@@ -1,0 +1,15 @@
+<template name="commentsBox">
+    {{! Make title editable }}
+    <h2>Comments</h2>
+
+    <form class="create-form" action="">
+        <textarea placeholder="Create a comment!" class="create-comment"></textarea>
+        <input type="submit" value="Add" />
+    </form>
+
+    <ul>
+    {{#each comment}}
+        <li>{{content}}</li>
+    {{/each}}
+    </ul>
+</template>

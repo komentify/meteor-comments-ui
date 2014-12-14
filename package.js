@@ -10,13 +10,14 @@ Package.onUse(function(api) {
   api.versionsFrom('1.0.1');
 
   // Meteor Core Dependencies
-  api.use(['underscore', 'mongo-livedata', 'templating']);
+  api.use(['underscore', 'mongo-livedata', 'templating', 'jquery']);
 
   // Atmosphere Package Dependencies
   api.use(['aldeed:collection2@2.2.0', 'aldeed:simple-schema@1.2.0']);
 
   // Package specific globals and files
   api.addFiles('lib/model.js');
+  api.addFiles(['lib/templates.html', 'lib/templates/commentsBox.js'], 'client');
   api.export('Comments');
 });
 
