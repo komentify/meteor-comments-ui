@@ -9,7 +9,13 @@
 
     <ul>
     {{#each comment}}
-        <li>{{content}}</li>
+        <li>
+            <div class="comment">
+                {{content}} (Likes: {{likesCount}})
+                <button class="like">{{likeText}}</button>
+                <button class="remove">Remove</button>
+            </div>
+        </li>
     {{/each}}
     </ul>
 </template>
