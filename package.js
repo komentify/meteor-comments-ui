@@ -10,7 +10,8 @@ Package.onUse(function(api) {
   api.versionsFrom('1.0.1');
 
   // Meteor Core Dependencies
-  api.use(['underscore', 'mongo-livedata', 'templating', 'jquery']);
+  api.use(['accounts-password@1.0.1'], { weak: true });
+  api.use(['underscore', 'mongo-livedata', 'templating', 'jquery', 'check']);
 
   // Atmosphere Package Dependencies
   api.use(['aldeed:collection2@2.2.0', 'aldeed:simple-schema@1.2.0', 'dburles:collection-helpers@1.0.1']);
@@ -22,6 +23,8 @@ Package.onUse(function(api) {
 });
 
 Package.onTest(function(api) {
-  api.use('tinytest');
-  api.use('comments-ui');
+  api.use(['tinytest', 'accounts-password']);
+  api.use('arkham:comments-ui');
+
+  api.addFiles('tests/api-tests.js');
 });
