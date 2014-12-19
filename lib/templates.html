@@ -16,11 +16,9 @@
             <ul class="media-list comments">
                 {{#each comment}}
                 <li class="media">
-                    {{#if hasAvatar}}
-                        <a class="media-left" href="#">
-                            <img src="..." alt="...">
-                        </a>
-                    {{/if}}
+                    <div class="media-left">
+                        {{> avatar userId=userId class="" }}
+                    </div>
                     <div class="media-body comment">
                         <h4 class="media-heading">{{user.email}} <small>{{createdAgo}}</small></h4>
                         <p class="content">{{content}}</p>
@@ -55,12 +53,7 @@
 
                 {{#each comment}}
                 <div class="comment">
-                    {{#if hasAvatar}}
-                        <a class="avatar">
-                            <img src="/images/avatar/small/matt.jpg">
-                        </a>
-                    {{/if}}
-
+                    {{> avatar userId=userId }}
                     <div class="content">
                         <a class="author">{{user.email}}</a>
                         <div class="metadata">

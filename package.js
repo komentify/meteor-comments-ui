@@ -16,7 +16,7 @@ Package.onUse(function(api) {
   // Atmosphere Package Dependencies
   api.use([
     'aldeed:collection2@2.2.0', 'aldeed:simple-schema@1.2.0', 'dburles:collection-helpers@1.0.1',
-    'momentjs:moment@2.8.4'
+    'momentjs:moment@2.8.4', 'bengott:avatar@0.7.2'
   ]);
 
   // Package specific globals and files
