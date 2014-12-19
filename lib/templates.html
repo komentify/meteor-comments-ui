@@ -10,7 +10,7 @@
                 <div class="form-group">
                     <textarea placeholder="Create a comment!" class="form-control create-comment" rows="3"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Add</button>
+                <button type="submit" class="btn btn-primary">Add Comment</button>
             </form>
 
             <ul class="media-list comments">
@@ -41,37 +41,46 @@
         {{/if}}
 
         {{#if templateIs 'semantic-ui' }}
-        <h3>Comments</h3>
+            <div class="ui comments">
+                <h3 class="ui header">Comments</h3>
 
-        <form class="create-form" action="">
-            <textarea placeholder="Create a comment!" class="create-comment" rows="3"></textarea>
-            <button type="submit" class="add-button">Add</button>
-        </form>
+                <form class="ui reply form create-form">
+                    <div class="field">
+                        <textarea class="create-comment"></textarea>
+                    </div>
+                    <button type="submit" class="ui blue labeled submit icon button">
+                        <i class="icon edit"></i> Add Comment
+                    </button>
+                </form>
 
-        <ul>
-            {{#each comment}}
-            <li>
-                {{#if hasAvatar}}
-                <a class="media-left" href="#">
-                    <img src="..." alt="...">
-                </a>
-                {{/if}}
+                {{#each comment}}
                 <div class="comment">
-                    <h4 class="media-heading">{{userId}}</h4>
-                    <div class="content">{{content}}</div>
+                    {{#if hasAvatar}}
+                        <a class="avatar">
+                            <img src="/images/avatar/small/matt.jpg">
+                        </a>
+                    {{/if}}
 
-                    <div class="actions">
-                        <button type="button" class="btn {{#if hasLiked}}btn-primary{{else}}btn-default{{/if}} like" aria-label="Left Align">
-                            <span class="badge">{{likesCount}}</span> <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                        </button>
-
-                        <button type="button remove" class="btn btn-danger" aria-label="Left Align">
-                        </button>
+                    <div class="content">
+                        <a class="author">{{user.email}}</a>
+                        <div class="metadata">
+                            <span class="date">{{createdAgo}}</span>
+                            <div class="rating">
+                                <i class="like icon"></i>
+                                {{likesCount}} Likes
+                            </div>
+                        </div>
+                        <div class="text">
+                            {{content}}
+                        </div>
+                        <div class="actions">
+                            <a class="ui mini {{#if hasLiked}}blue{{/if}} like button">Like</a>
+                            <a class="ui mini remove button">Remove</a>
+                        </div>
                     </div>
                 </div>
-            </li>
-            {{/each}}
-        </ul>
+                {{/each}}
+            </div>
         {{/if}}
     </div>
 </template>
