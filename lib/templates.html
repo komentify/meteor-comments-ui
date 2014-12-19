@@ -3,14 +3,18 @@
         even when using Template.dynamic }}
 
     <div class="comments-box">
-        {{#if templateIs 'bootstrap3' }}
-            <h3>Comments</h3>
+        {{#if templateIs 'bootstrap' }}
+            <h3>{{ take key='title' default='Comments'}}</h3>
+
+            {{#if loginAction}}
+                <div class="alert alert-warning" role="alert">You need to login to {{loginAction}}</div>
+            {{/if}}
 
             <form class="create-form" role="form" action="">
                 <div class="form-group">
-                    <textarea placeholder="Create a comment!" class="form-control create-comment" rows="3"></textarea>
+                    <textarea placeholder="{{ take key='add-textarea' default='Create a comment!'}}" class="form-control create-comment" rows="3"></textarea>
                 </div>
-                <button type="submit" class="btn btn-primary">Add Comment</button>
+                <button type="submit" class="btn btn-primary">{{ take key='add-button' default='Add Comment'}}</button>
             </form>
 
             <ul class="media-list comments">
@@ -24,12 +28,12 @@
                         <p class="content">{{content}}</p>
 
                         <div class="actions">
-                            <div class="btn btn-xs {{#if hasLiked}}btn-primary{{else}}btn-default{{/if}} like" aria-label="Left Align">
+                            <div class="btn btn-xs {{#if hasLiked}}btn-primary{{else}}btn-default{{/if}} like-action" aria-label="Left Align">
                                 <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
                             </div>
 
                             {{#if isOwnComment}}
-                            <div class="btn btn-xs btn-danger remove" aria-label="Left Align">
+                            <div class="btn btn-xs btn-danger remove-action" aria-label="Left Align">
                                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             </div>
                             {{/if}}
@@ -42,14 +46,19 @@
 
         {{#if templateIs 'semantic-ui' }}
             <div class="ui comments">
-                <h3 class="ui header">Comments</h3>
+                <h3 class="ui header">{{ take key='title' default='Comments'}}</h3>
+                {{#if loginAction}}
+                    <div class="ui warning message">
+                        You need to login to {{loginAction}}
+                    </div>
+                {{/if}}
 
                 <form class="ui reply form create-form">
                     <div class="field">
-                        <textarea class="create-comment"></textarea>
+                        <textarea placeholder="{{ take key='add-textarea' default='Create a comment!'}}" class="create-comment"></textarea>
                     </div>
                     <button type="submit" class="ui blue labeled submit icon button">
-                        <i class="icon edit"></i> Add Comment
+                        <i class="icon edit"></i> {{ take key='add-button' default='Add Comment'}}
                     </button>
                 </form>
 
@@ -60,18 +69,15 @@
                         <a class="author">{{user.email}}</a>
                         <div class="metadata">
                             <span class="date">{{createdAgo}}</span>
-                            <div class="rating">
-                                <i class="like icon"></i>
-                                {{likesCount}} Likes
-                            </div>
+                            <div class="rating">{{likesCount}} Likes</div>
                         </div>
                         <div class="text">
                             {{content}}
                         </div>
                         <div class="actions">
-                            <a class="ui mini {{#if hasLiked}}blue{{/if}} like button">Like</a>
+                            <a class="ui mini {{#if hasLiked}}blue{{/if}} like-action icon button"><i class="like icon"></i></a>
                             {{#if isOwnComment}}
-                            <a class="ui mini remove button">Remove</a>
+                                <a class="ui mini remove-action icon button"><i class="remove icon"></i></a>
                             {{/if}}
                         </div>
                     </div>

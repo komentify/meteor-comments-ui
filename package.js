@@ -11,12 +11,12 @@ Package.onUse(function(api) {
 
   // Meteor Core Dependencies
   api.use(['accounts-password@1.0.1'], { weak: true });
-  api.use(['underscore', 'mongo-livedata', 'templating', 'jquery', 'check', 'less', 'tracker', 'check']);
+  api.use(['underscore', 'mongo-livedata', 'templating', 'jquery', 'check', 'less', 'tracker', 'check', 'session']);
 
   // Atmosphere Package Dependencies
   api.use([
     'aldeed:collection2@2.2.0', 'aldeed:simple-schema@1.2.0', 'dburles:collection-helpers@1.0.1',
-    'momentjs:moment@2.8.4', 'bengott:avatar@0.7.2', 'reywood:publish-composite@1.3.5'
+    'flamparski:moment-locales@0.0.3', 'bengott:avatar@0.7.2', 'reywood:publish-composite@1.3.5'
   ]);
 
   // Package specific globals and files
