@@ -27,7 +27,6 @@ if (Meteor.isClient) {
 
   Meteor.methods({
     'getDoc' : function (referenceId) {
-      console.log(Comments._collection.findOne({ referenceId: referenceId }));
       return Comments._collection.findOne({ referenceId: referenceId });
     }
   });
