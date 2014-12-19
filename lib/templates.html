@@ -20,17 +20,19 @@
                         {{> avatar userId=userId class="" }}
                     </div>
                     <div class="media-body comment">
-                        <h4 class="media-heading">{{user.email}} <small>{{createdAgo}}</small></h4>
+                        <h4 class="media-heading">{{user.email}} <small>{{createdAgo}}, {{likesCount}} likes</small></h4>
                         <p class="content">{{content}}</p>
 
                         <div class="actions">
-                            <button type="button" class="btn {{#if hasLiked}}btn-primary{{else}}btn-default{{/if}} like" aria-label="Left Align">
-                                <span class="badge">{{likesCount}}</span> <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                            </button>
+                            <div class="btn btn-xs {{#if hasLiked}}btn-primary{{else}}btn-default{{/if}} like" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                            </div>
 
-                            <button type="button" class="btn btn-danger remove" aria-label="Left Align">
+                            {{#if isOwnComment}}
+                            <div class="btn btn-xs btn-danger remove" aria-label="Left Align">
                                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            </button>
+                            </div>
+                            {{/if}}
                         </div>
                     </div>
                 </li>
@@ -68,7 +70,9 @@
                         </div>
                         <div class="actions">
                             <a class="ui mini {{#if hasLiked}}blue{{/if}} like button">Like</a>
+                            {{#if isOwnComment}}
                             <a class="ui mini remove button">Remove</a>
+                            {{/if}}
                         </div>
                     </div>
                 </div>
