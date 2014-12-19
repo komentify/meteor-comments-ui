@@ -11,14 +11,18 @@ Package.onUse(function(api) {
 
   // Meteor Core Dependencies
   api.use(['accounts-password@1.0.1'], { weak: true });
-  api.use(['underscore', 'mongo-livedata', 'templating', 'jquery', 'check']);
+  api.use(['underscore', 'mongo-livedata', 'templating', 'jquery', 'check', 'less', 'tracker']);
 
   // Atmosphere Package Dependencies
-  api.use(['aldeed:collection2@2.2.0', 'aldeed:simple-schema@1.2.0', 'dburles:collection-helpers@1.0.1']);
+  api.use([
+    'aldeed:collection2@2.2.0', 'aldeed:simple-schema@1.2.0', 'dburles:collection-helpers@1.0.1',
+    'momentjs:moment@2.8.4'
+  ]);
 
   // Package specific globals and files
   api.addFiles('lib/model.js');
-  api.addFiles(['lib/templates.html', 'lib/templates/commentsBox.js'], 'client');
+  api.addFiles(['lib/templates.html', 'lib/templates/commentsBox.less']);
+  api.addFiles(['lib/ui.js', 'lib/templates/commentsBox.js'], 'client');
   api.export('Comments');
 });
 

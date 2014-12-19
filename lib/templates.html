@@ -1,21 +1,77 @@
 <template name="commentsBox">
-    {{! Make title editable }}
-    <h2>Comments</h2>
+    {{! We have not found any good way to include templates with the same context
+        even when using Template.dynamic }}
 
-    <form class="create-form" action="">
-        <textarea placeholder="Create a comment!" class="create-comment"></textarea>
-        <input type="submit" value="Add" />
-    </form>
+    <div class="comments-box">
+        {{#if templateIs 'bootstrap3' }}
+            <h3>Comments</h3>
 
-    <ul>
-    {{#each comment}}
-        <li>
-            <div class="comment">
-                {{content}} (Likes: {{likesCount}})
-                <button class="like">{{likeText}}</button>
-                <button class="remove">Remove</button>
-            </div>
-        </li>
-    {{/each}}
-    </ul>
+            <form class="create-form" role="form" action="">
+                <div class="form-group">
+                    <textarea placeholder="Create a comment!" class="form-control create-comment" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Add</button>
+            </form>
+
+            <ul class="media-list comments">
+                {{#each comment}}
+                <li class="media">
+                    {{#if hasAvatar}}
+                        <a class="media-left" href="#">
+                            <img src="..." alt="...">
+                        </a>
+                    {{/if}}
+                    <div class="media-body comment">
+                        <h4 class="media-heading">{{user.email}} <small>{{createdAgo}}</small></h4>
+                        <p class="content">{{content}}</p>
+
+                        <div class="actions">
+                            <button type="button" class="btn {{#if hasLiked}}btn-primary{{else}}btn-default{{/if}} like" aria-label="Left Align">
+                                <span class="badge">{{likesCount}}</span> <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                            </button>
+
+                            <button type="button" class="btn btn-danger remove" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                </li>
+                {{/each}}
+            </ul>
+        {{/if}}
+
+        {{#if templateIs 'semantic-ui' }}
+        <h3>Comments</h3>
+
+        <form class="create-form" action="">
+            <textarea placeholder="Create a comment!" class="create-comment" rows="3"></textarea>
+            <button type="submit" class="add-button">Add</button>
+        </form>
+
+        <ul>
+            {{#each comment}}
+            <li>
+                {{#if hasAvatar}}
+                <a class="media-left" href="#">
+                    <img src="..." alt="...">
+                </a>
+                {{/if}}
+                <div class="comment">
+                    <h4 class="media-heading">{{userId}}</h4>
+                    <div class="content">{{content}}</div>
+
+                    <div class="actions">
+                        <button type="button" class="btn {{#if hasLiked}}btn-primary{{else}}btn-default{{/if}} like" aria-label="Left Align">
+                            <span class="badge">{{likesCount}}</span> <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                        </button>
+
+                        <button type="button remove" class="btn btn-danger" aria-label="Left Align">
+                        </button>
+                    </div>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+        {{/if}}
+    </div>
 </template>
