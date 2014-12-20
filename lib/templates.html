@@ -42,6 +42,10 @@
                 </li>
                 {{/each}}
             </ul>
+
+            {{#if hasMoreComments}}
+                <button type="button" class="btn btn-success btn-lg btn-block loadmore-action">{{ take key='load-more' default='Load more comments' }}</button>
+            {{/if}}
         {{/if}}
 
         {{#if templateIs 'semantic-ui' }}
@@ -83,6 +87,10 @@
                     </div>
                 </div>
                 {{/each}}
+
+                {{#if hasMoreComments}}
+                    <div class="ui fluid green loadmore-action button">{{ take key='load-more' default='Load more comments' }}</div>
+                {{/if}}
             </div>
         {{/if}}
     </div>
