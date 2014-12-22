@@ -17,6 +17,10 @@
       "1.0.1"
     ],
     [
+      "bengott:avatar",
+      "0.7.2"
+    ],
+    [
       "binary-heap",
       "1.0.1"
     ],
@@ -49,6 +53,10 @@
       "1.0.4"
     ],
     [
+      "flamparski:moment-locales",
+      "0.0.3"
+    ],
+    [
       "follower-livedata",
       "1.0.2"
     ],
@@ -65,12 +73,28 @@
       "1.0.1"
     ],
     [
+      "jparker:crypto-core",
+      "0.1.0"
+    ],
+    [
+      "jparker:crypto-md5",
+      "0.1.1"
+    ],
+    [
+      "jparker:gravatar",
+      "0.3.1"
+    ],
+    [
       "jquery",
       "1.0.1"
     ],
     [
       "json",
       "1.0.1"
+    ],
+    [
+      "less",
+      "1.0.11"
     ],
     [
       "logging",
@@ -105,12 +129,28 @@
       "1.0.1"
     ],
     [
+      "reactive-dict",
+      "1.0.4"
+    ],
+    [
       "reactive-var",
       "1.0.3"
     ],
     [
       "retry",
       "1.0.1"
+    ],
+    [
+      "reywood:publish-composite",
+      "1.3.5"
+    ],
+    [
+      "session",
+      "1.0.4"
+    ],
+    [
+      "stylus",
+      "1.0.5"
     ],
     [
       "templating",

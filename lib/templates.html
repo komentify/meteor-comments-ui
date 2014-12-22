@@ -1,21 +1,97 @@
 <template name="commentsBox">
-    {{! Make title editable }}
-    <h2>Comments</h2>
+    {{! We have not found any good way to include templates with the same context
+        even when using Template.dynamic }}
 
-    <form class="create-form" action="">
-        <textarea placeholder="Create a comment!" class="create-comment"></textarea>
-        <input type="submit" value="Add" />
-    </form>
+    <div class="comments-box">
+        {{#if templateIs 'bootstrap' }}
+            <h3>{{ take key='title' default='Comments'}}</h3>
 
-    <ul>
-    {{#each comment}}
-        <li>
-            <div class="comment">
-                {{content}} (Likes: {{likesCount}})
-                <button class="like">{{likeText}}</button>
-                <button class="remove">Remove</button>
+            {{#if loginAction}}
+                <div class="alert alert-warning" role="alert">You need to login to {{loginAction}}</div>
+            {{/if}}
+
+            <form class="create-form" role="form" action="">
+                <div class="form-group">
+                    <textarea placeholder="{{ take key='add-textarea' default='Create a comment!'}}" class="form-control create-comment" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">{{ take key='add-button' default='Add Comment'}}</button>
+            </form>
+
+            <ul class="media-list comments">
+                {{#each comment}}
+                <li class="media">
+                    <div class="media-left">
+                        {{> avatar userId=userId class="" }}
+                    </div>
+                    <div class="media-body comment">
+                        <h4 class="media-heading">{{user.email}} <small>{{createdAgo}}, {{likesCount}} likes</small></h4>
+                        <p class="content">{{content}}</p>
+
+                        <div class="actions">
+                            <div class="btn btn-xs {{#if hasLiked}}btn-primary{{else}}btn-default{{/if}} like-action" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                            </div>
+
+                            {{#if isOwnComment}}
+                            <div class="btn btn-xs btn-danger remove-action" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                            </div>
+                            {{/if}}
+                        </div>
+                    </div>
+                </li>
+                {{/each}}
+            </ul>
+
+            {{#if hasMoreComments}}
+                <button type="button" class="btn btn-success btn-lg btn-block loadmore-action">{{ take key='load-more' default='Load more comments' }}</button>
+            {{/if}}
+        {{/if}}
+
+        {{#if templateIs 'semantic-ui' }}
+            <div class="ui comments">
+                <h3 class="ui header">{{ take key='title' default='Comments'}}</h3>
+                {{#if loginAction}}
+                    <div class="ui warning message">
+                        You need to login to {{loginAction}}
+                    </div>
+                {{/if}}
+
+                <form class="ui reply form create-form">
+                    <div class="field">
+                        <textarea placeholder="{{ take key='add-textarea' default='Create a comment!'}}" class="create-comment"></textarea>
+                    </div>
+                    <button type="submit" class="ui blue labeled submit icon button">
+                        <i class="icon edit"></i> {{ take key='add-button' default='Add Comment'}}
+                    </button>
+                </form>
+
+                {{#each comment}}
+                <div class="comment">
+                    {{> avatar userId=userId }}
+                    <div class="content">
+                        <a class="author">{{user.email}}</a>
+                        <div class="metadata">
+                            <span class="date">{{createdAgo}}</span>
+                            <div class="rating">{{likesCount}} Likes</div>
+                        </div>
+                        <div class="text">
+                            {{content}}
+                        </div>
+                        <div class="actions">
+                            <a class="ui mini {{#if hasLiked}}blue{{/if}} like-action icon button"><i class="like icon"></i></a>
+                            {{#if isOwnComment}}
+                                <a class="ui mini remove-action icon button"><i class="remove icon"></i></a>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+
+                {{#if hasMoreComments}}
+                    <div class="ui fluid green loadmore-action button">{{ take key='load-more' default='Load more comments' }}</div>
+                {{/if}}
             </div>
-        </li>
-    {{/each}}
-    </ul>
+        {{/if}}
+    </div>
 </template>
