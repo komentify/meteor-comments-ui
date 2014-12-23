@@ -16,7 +16,7 @@ meteor add arkham:comments-ui
 
 ## UI Templates
 
-There are two default templates for Bootstrap 3 and Semantic UI with according html, configure it like following.
+There are two default templates for __Bootstrap 3__ and __Semantic UI__ with according html, configure it like following.
 
 ```javascript
 // On the Client
