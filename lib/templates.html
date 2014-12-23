@@ -24,15 +24,25 @@
                         {{> avatar userId=userId class="" }}
                     </div>
                     <div class="media-body comment">
-                        <h4 class="media-heading">{{user.email}} <small>{{createdAgo}}, {{likesCount}} likes</small></h4>
-                        <p class="content">{{content}}</p>
+                        <h4 class="media-heading">{{user.email}} <small>{{createdAgo}}</small></h4>
+                        <p class="content comment-content">{{content}}</p>
 
                         <div class="actions">
+                            <small>{{likesCount}}</small>
                             <div class="btn btn-xs {{#if hasLiked}}btn-primary{{else}}btn-default{{/if}} like-action" aria-label="Left Align">
                                 <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
                             </div>
 
                             {{#if isOwnComment}}
+                            {{#if isEditable}}
+                                <div class="btn btn-xs btn-primary save-action" aria-label="Left Align">
+                                    Save
+                                </div>
+                            {{else}}
+                                <div class="btn btn-xs btn-default edit-action" aria-label="Left Align">
+                                    Edit
+                                </div>
+                            {{/if}}
                             <div class="btn btn-xs btn-danger remove-action" aria-label="Left Align">
                                 <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                             </div>
@@ -73,15 +83,24 @@
                         <a class="author">{{user.email}}</a>
                         <div class="metadata">
                             <span class="date">{{createdAgo}}</span>
-                            <div class="rating">{{likesCount}} Likes</div>
+                            <div class="rating">
+                                <div class="ui {{#if hasLiked}}red{{else}}basic{{/if}} like-action button">
+                                    <i class="star icon"></i>
+                                    {{likesCount}}
+                                </div>
+                            </div>
                         </div>
-                        <div class="text">
+                        <div class="text comment-content">
                             {{content}}
                         </div>
                         <div class="actions">
-                            <a class="ui mini {{#if hasLiked}}red{{/if}} like-action icon button"><i class="like icon"></i></a>
                             {{#if isOwnComment}}
-                                <a class="ui mini remove-action icon button"><i class="remove icon"></i></a>
+                                {{#if isEditable}}
+                                    <a class="save-action">Save</a>
+                                {{else}}
+                                    <a class="edit-action">Edit</a>
+                                {{/if}}
+                                <a class="remove-action">Remove</a>
                             {{/if}}
                         </div>
                     </div>
