@@ -34,18 +34,18 @@
                             </div>
 
                             {{#if isOwnComment}}
-                            {{#if isEditable}}
-                                <div class="btn btn-xs btn-primary save-action" aria-label="Left Align">
-                                    Save
+                                {{#if isEditable}}
+                                    <div class="btn btn-xs btn-primary save-action" aria-label="Left Align">
+                                        {{ take key='save' default='Save' }}
+                                    </div>
+                                {{else}}
+                                    <div class="btn btn-xs btn-default edit-action" aria-label="Left Align">
+                                        {{ take key='edit' default='Edit' }}
+                                    </div>
+                                {{/if}}
+                                <div class="btn btn-xs btn-danger remove-action" aria-label="Left Align">
+                                    {{ take key='edit' default='Remove' }}
                                 </div>
-                            {{else}}
-                                <div class="btn btn-xs btn-default edit-action" aria-label="Left Align">
-                                    Edit
-                                </div>
-                            {{/if}}
-                            <div class="btn btn-xs btn-danger remove-action" aria-label="Left Align">
-                                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                            </div>
                             {{/if}}
                         </div>
                     </div>
@@ -96,11 +96,11 @@
                         <div class="actions">
                             {{#if isOwnComment}}
                                 {{#if isEditable}}
-                                    <a class="save-action">Save</a>
+                                    <a class="save-action">{{ take key='save' default='Save' }}</a>
                                 {{else}}
-                                    <a class="edit-action">Edit</a>
+                                    <a class="edit-action">{{ take key='edit' default='Edit' }}</a>
                                 {{/if}}
-                                <a class="remove-action">Remove</a>
+                                <a class="remove-action">{{ take key='remove' default='Remove' }}</a>
                             {{/if}}
                         </div>
                     </div>
