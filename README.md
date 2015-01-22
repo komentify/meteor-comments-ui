@@ -21,7 +21,7 @@ There are two default templates for __Bootstrap 3__ and __Semantic UI__ with acc
 ```javascript
 // On the Client
 Comments.ui.config({
-    templates: 'bootstrap'
+   template: 'bootstrap'
 });
 ```
 
