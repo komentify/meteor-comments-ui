@@ -1,13 +1,12 @@
 .comments-box {
     max-width: 40em;
     padding: 1em;
+    
+    @navy: #001F3F;
 
     .comments {
         padding-top: 1em;
-
-        .actions {
-            transition: 1s background-color;
-        }
+        transition: 1s background-color;
     }
 
     .avatar-initials {
@@ -24,5 +23,12 @@
 
     .loadmore-action.button {
         margin-top: 2em;
+    }
+
+    div[contenteditable=true] {
+        background-color: @navy;
+        border-radius: 3px;
+        color: white;
+        opacity: 0.8;
     }
 }
