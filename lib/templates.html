@@ -81,23 +81,22 @@
 
 <template name="commentsSingleComment">
     {{#if templateIs 'semantic-ui' }}
-        <div data-id="{{_id}}" class="comment {{#if _id}}root-comment{{/if}}">
+        <div data-id="{{_id}}" class="comment">
             {{> avatar userId=userId }}
             <div class="content">
                 <a class="author">{{user.email}}</a>
                 <div class="metadata">
                     <span class="date">{{createdAgo}}</span>
-                    <div class="rating">
-                        <div class="ui {{#if hasLiked}}red{{else}}basic{{/if}} like-action button">
-                            <i class="star icon"></i>
-                            {{likesCount}}
-                        </div>
-                    </div>
                 </div>
                 <div class="text comment-content" data-id="{{commentId}}">
                     {{content}}
                 </div>
                 <div class="actions">
+                    <a class="rating unstyled-link like-action {{#if hasLiked}}active{{/if}}">
+                        {{likesCount}}
+                        <i class="angle up link icon"></i>
+                    </a>
+
                     <a class="reply-action">{{ take key='reply' default='Reply' }}</a>
                     {{#if isOwnComment}}
                         {{#if isEditable}}
@@ -113,11 +112,14 @@
                         {{> textarea reply=true scope=this }}
                     {{/if}}
                 </div>
-                <div class="comments reply-wrapper">
-                    {{#each reply}}
-                        {{> commentsSingleComment }}
-                    {{/each}}
-                </div>
+
+                {{#if reply}}
+                    <div class="comments reply-wrapper">
+                        {{#each reply}}
+                            {{> commentsSingleComment }}
+                        {{/each}}
+                    </div>
+                {{/if}}
             </div>
         </div>
     {{/if}}
@@ -127,7 +129,7 @@
     {{#if templateIs 'semantic-ui' }}
         <form class="ui reply form {{#if reply}}reply-form{{else}}comment-form{{/if}}">
             <div class="field">
-                <textarea 
+                <textarea
                     placeholder="{{ take key='placeholder-textarea' default='Join the discussion'}}"
                     class="{{#if reply}}create-reply{{else}}create-comment{{/if}}"></textarea>
             </div>
@@ -136,11 +138,11 @@
             </button>
         </form>
     {{/if}}
-    
+
     {{#if templateIs 'bootstrap' }}
         <form class="{{#if reply}}reply-form{{else}}comment-form{{/if}}" role="form" action="">
             <div class="form-group">
-                <textarea 
+                <textarea
                     placeholder="{{ take key='placeholder-textarea' default='Join the discussion'}}"
                     class="form-control {{#if reply}}create-reply{{else}}create-comment{{/if}}" rows="3"></textarea>
             </div>
