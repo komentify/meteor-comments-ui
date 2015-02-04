@@ -9,6 +9,10 @@
         transition: 1s background-color;
     }
 
+    .unstyled-link {
+        text-decoration: none;
+    }
+
     .avatar-initials {
         background-color: #FFFFFF;
     }
@@ -27,8 +31,22 @@
 
     div[contenteditable=true] {
         background-color: @navy;
-        border-radius: 3px;
+        border-radius: 0.4em;
         color: white;
         opacity: 0.8;
+    }
+    
+    .padded {
+        padding: 0.5em;
+    }
+    
+    // semantic ui
+    .ui.comments > .comment .comments {
+        margin-left: -3em;
+    }
+
+    // bootstrap 3
+    .actions .label {
+        margin: 0 0.5em;
     }
 }

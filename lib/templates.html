@@ -10,48 +10,13 @@
                 <div class="alert alert-warning" role="alert">You need to login to {{loginAction}}</div>
             {{/if}}
 
-            <form class="create-form" role="form" action="">
-                <div class="form-group">
-                    <textarea placeholder="{{ take key='placeholder-textarea' default='Create a comment!'}}" class="form-control create-comment" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">{{ take key='add-button' default='Add Comment'}}</button>
-            </form>
+            {{> textarea }}
 
-            <ul class="media-list comments">
+            <div class="media-list comments">
                 {{#each comment}}
-                <li class="media">
-                    <div class="media-left">
-                        {{> avatar userId=userId class="" }}
-                    </div>
-                    <div class="media-body comment">
-                        <h4 class="media-heading">{{user.email}} <small>{{createdAgo}}</small></h4>
-                        <p class="content comment-content">{{content}}</p>
-
-                        <div class="actions">
-                            <small>{{likesCount}}</small>
-                            <div class="btn btn-xs {{#if hasLiked}}btn-primary{{else}}btn-default{{/if}} like-action" aria-label="Left Align">
-                                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-                            </div>
-
-                            {{#if isOwnComment}}
-                                {{#if isEditable}}
-                                    <div class="btn btn-xs btn-primary save-action" aria-label="Left Align">
-                                        {{ take key='save' default='Save' }}
-                                    </div>
-                                {{else}}
-                                    <div class="btn btn-xs btn-default edit-action" aria-label="Left Align">
-                                        {{ take key='edit' default='Edit' }}
-                                    </div>
-                                {{/if}}
-                                <div class="btn btn-xs btn-danger remove-action" aria-label="Left Align">
-                                    {{ take key='edit' default='Remove' }}
-                                </div>
-                            {{/if}}
-                        </div>
-                    </div>
-                </li>
+                    {{> commentsSingleComment}}
                 {{/each}}
-            </ul>
+            </div>
 
             {{#if hasMoreComments}}
                 <button type="button" class="btn btn-success btn-lg btn-block loadmore-action">{{ take key='load-more' default='Load more comments' }}</button>
@@ -67,44 +32,10 @@
                     </div>
                 {{/if}}
 
-                <form class="ui reply form create-form">
-                    <div class="field">
-                        <textarea placeholder="{{ take key='placeholder-textarea' default='Create a comment!'}}" class="create-comment"></textarea>
-                    </div>
-                    <button type="submit" class="ui blue labeled submit icon button">
-                        <i class="icon edit"></i> {{ take key='add-button' default='Add Comment'}}
-                    </button>
-                </form>
+                {{> textarea }}
 
                 {{#each comment}}
-                <div class="comment">
-                    {{> avatar userId=userId }}
-                    <div class="content">
-                        <a class="author">{{user.email}}</a>
-                        <div class="metadata">
-                            <span class="date">{{createdAgo}}</span>
-                            <div class="rating">
-                                <div class="ui {{#if hasLiked}}red{{else}}basic{{/if}} like-action button">
-                                    <i class="star icon"></i>
-                                    {{likesCount}}
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text comment-content">
-                            {{content}}
-                        </div>
-                        <div class="actions">
-                            {{#if isOwnComment}}
-                                {{#if isEditable}}
-                                    <a class="save-action">{{ take key='save' default='Save' }}</a>
-                                {{else}}
-                                    <a class="edit-action">{{ take key='edit' default='Edit' }}</a>
-                                {{/if}}
-                                <a class="remove-action">{{ take key='remove' default='Remove' }}</a>
-                            {{/if}}
-                        </div>
-                    </div>
-                </div>
+                    {{> commentsSingleComment }}
                 {{/each}}
 
                 {{#if hasMoreComments}}
@@ -113,4 +44,128 @@
             </div>
         {{/if}}
     </div>
+</template>
+
+<template name="commentsSingleComment">
+    {{#if templateIs 'semantic-ui' }}
+        <div data-id="{{_id}}" class="comment">
+            {{> avatar userId=userId }}
+            <div class="content">
+                <a class="author">{{user.displayName}}</a>
+                <div class="metadata">
+                    <span class="date">{{createdAgo}}</span>
+                </div>
+                <div class="text comment-content" data-id="{{commentId}}">
+                    {{content}}
+                </div>
+                <div class="actions">
+                    <a class="rating unstyled-link like-action {{#if hasLiked}}active{{/if}}">
+                        {{likesCount}}
+                        <i class="angle up link icon"></i>
+                    </a>
+
+                    <a class="reply-action">{{ take key='reply' default='Reply' }}</a>
+                    {{#if isOwnComment}}
+                        {{#if isEditable}}
+                            <a class="save-action">{{ take key='save' default='Save' }}</a>
+                        {{else}}
+                            <a class="edit-action">{{ take key='edit' default='Edit' }}</a>
+                        {{/if}}
+                    <a class="remove-action">{{ take key='remove' default='Remove' }}</a>
+                    {{/if}}
+                </div>
+                <div class="create-reply">
+                    {{#if addReply}}
+                        {{> textarea reply=true scope=this }}
+                    {{/if}}
+                </div>
+
+                {{#if reply}}
+                    <div class="comments reply-wrapper">
+                        {{#each reply}}
+                            {{> commentsSingleComment }}
+                        {{/each}}
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+    {{/if}}
+    
+    {{#if templateIs 'bootstrap' }}
+        <div class="media">
+            <div class="media-left">
+                {{> avatar userId=userId class="" }}
+            </div>
+            <div class="media-body comment">
+                <h4 class="media-heading">{{user.displayName}} <small>{{createdAgo}}</small></h4>
+                <div class="content">
+                    <p class="comment-content" data-id="{{commentId}}">{{content}}</p>
+
+                    <div class="actions btn-group btn-group-xs">
+                        <div class="btn {{#if hasLiked}}btn-primary{{else}}btn-default{{/if}} like-action" aria-label="Left Align">
+                            <small>{{likesCount}}</small>
+                            <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+                        </div>
+
+                        <div class="btn btn-default reply-action" aria-label="Left Align">
+                            {{ take key='reply' default='Reply' }}
+                        </div>
+
+                        {{#if isOwnComment}}
+                        {{#if isEditable}}
+                        <div class="btn btn-default save-action" aria-label="Left Align">
+                            {{ take key='save' default='Save' }}
+                        </div>
+                        {{else}}
+                        <div class="btn btn-default edit-action" aria-label="Left Align">
+                            {{ take key='edit' default='Edit' }}
+                        </div>
+                        {{/if}}
+                        <div class="btn btn-danger remove-action" aria-label="Left Align">
+                            {{ take key='edit' default='Remove' }}
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+
+                {{#if addReply}}
+                    <div class="create-reply">
+                        {{> textarea reply=true scope=this }}
+                    </div>
+                {{/if}}
+
+                {{#if reply}}
+                    {{#each reply}}
+                        {{> commentsSingleComment }}
+                    {{/each}}
+                {{/if}}
+            </div>
+        </div>
+    {{/if}}
+</template>
+
+<template name="commentsTextarea">
+    {{#if templateIs 'semantic-ui' }}
+        <form class="ui reply form {{#if reply}}reply-form{{else}}comment-form{{/if}}">
+            <div class="field">
+                <textarea
+                    placeholder="{{ take key='placeholder-textarea' default='Join the discussion'}}"
+                    class="{{#if reply}}create-reply{{else}}create-comment{{/if}}"></textarea>
+            </div>
+            <button type="submit" class="ui blue labeled submit icon button">
+                <i class="icon edit"></i> {{ take key=addButtonKey default=addButtonText }}
+            </button>
+        </form>
+    {{/if}}
+
+    {{#if templateIs 'bootstrap' }}
+        <form class="{{#if reply}}reply-form{{else}}comment-form{{/if}}" role="form" action="">
+            <div class="form-group">
+                <textarea
+                    placeholder="{{ take key='placeholder-textarea' default='Join the discussion'}}"
+                    class="form-control {{#if reply}}create-reply{{else}}create-comment{{/if}}" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">{{ take key=addButtonKey default=addButtonText }}</button>
+        </form>
+    {{/if}}
 </template>
