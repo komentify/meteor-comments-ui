@@ -2,48 +2,50 @@
     {{! We have not found any good way to include templates with the same context
         even when using Template.dynamic }}
 
-    <div class="comments-box">
-        {{#if templateIs 'bootstrap' }}
-            <h3>{{ take key='title' default='Comments'}}</h3>
-
-            {{#if loginAction}}
-                <div class="alert alert-warning" role="alert">You need to login to {{loginAction}}</div>
-            {{/if}}
-
-            {{> textarea }}
-
-            <div class="media-list comments">
-                {{#each comment}}
-                    {{> commentsSingleComment}}
-                {{/each}}
-            </div>
-
-            {{#if hasMoreComments}}
-                <button type="button" class="btn btn-success btn-lg btn-block loadmore-action">{{ take key='load-more' default='Load more comments' }}</button>
-            {{/if}}
-        {{/if}}
-
-        {{#if templateIs 'semantic-ui' }}
-            <div class="ui comments">
-                <h3 class="ui header">{{ take key='title' default='Comments'}}</h3>
+    {{#if customTpl}}
+        {{> customTpl }}
+    {{else}}
+        <div class="comments-box">
+            {{#if templateIs 'bootstrap' }}
+                <h3>{{ take key='title' default='Comments'}}</h3>
+    
                 {{#if loginAction}}
-                    <div class="ui warning message">
-                        You need to login to {{loginAction}}
-                    </div>
+                    <div class="alert alert-warning" role="alert">You need to login to {{loginAction}}</div>
                 {{/if}}
 
                 {{> textarea }}
 
-                {{#each comment}}
-                    {{> commentsSingleComment }}
-                {{/each}}
+                <div class="media-list comments">
+                    {{#each comment}}
+                        {{> commentsSingleComment}}
+                    {{/each}}
+                </div>
 
                 {{#if hasMoreComments}}
-                    <div class="ui fluid green loadmore-action button">{{ take key='load-more' default='Load more comments' }}</div>
+                    <button type="button" class="btn btn-success btn-lg btn-block loadmore-action">{{ take key='load-more' default='Load more comments' }}</button>
                 {{/if}}
-            </div>
-        {{/if}}
-    </div>
+            {{/if}}
+    
+            {{#if templateIs 'semantic-ui' }}
+                <div class="ui comments">
+                    <h3 class="ui header">{{ take key='title' default='Comments'}}</h3>
+                        {{#if loginAction}}
+                            <div class="ui warning message">You need to login to {{loginAction}}</div>
+                        {{/if}}
+
+                        {{> textarea }}
+
+                        {{#each comment}}
+                            {{> commentsSingleComment }}
+                        {{/each}}
+
+                        {{#if hasMoreComments}}
+                            <div class="ui fluid green loadmore-action button">{{ take key='load-more' default='Load more comments' }}</div>
+                        {{/if}}
+                </div>
+            {{/if}}
+        </div>
+    {{/if}}
 </template>
 
 <template name="commentsSingleComment">
