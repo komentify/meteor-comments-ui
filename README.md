@@ -50,7 +50,7 @@ You can customize the output of the commentsBox by adding a __customTemplate__ p
 </template>
 ```
 
-Have a look at the [default template](https://github.com/ARKHAM-Enterprises/meteor-comments-ui/blob/master/lib/templates.html) to see what data you have available.
+Have a look at the [default template](https://github.com/ARKHAM-Enterprises/meteor-comments-ui/blob/master/lib/templates.html) to see what data you have available. There are predefined classes which have a *-action format, that defines when to act on [certain events](https://github.com/ARKHAM-Enterprises/meteor-comments-ui/blob/master/lib/templates/commentsBox.js#L104).
 
 ### Text Strings
 
