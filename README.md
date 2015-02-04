@@ -1,12 +1,14 @@
 # Meteor Comments UI
 
-This package lets you add __disqus like__ comment functionality in a matter of seconds. Comments-ui uses the Meteor accounts system which (in constrast to disqus) makes it easy to get the data and use it to your wishes.
+This package lets you add __disqus like__ comment functionality in a matter of seconds. Comments-ui uses the Meteor accounts system which (in constrast to disqus) makes it easy to get the data and use it to your wishes. It also supports liking and replying to comments.
 
 ```html
 <div class="comment-section">
     {{> commentsBox id=documentId}}
 </div>
 ```
+
+```documentId``` could be the id of a blog post, news article or a custom defined string that stands for your guestbook.
 
 ## How to install
 
@@ -27,7 +29,30 @@ Comments.ui.config({
 
 ```semantic-ui``` is the default, because of the semantic markup that is written with it.
 
-## Custom text strings
+## Customization
+
+You can customize the output of the commentsBox by adding a __customTemplate__ parameter.
+
+```html
+<template name="myComments">
+    <ul>
+        {{#each comment}}
+            ...
+            <li>{{content}}</li>
+            ...
+        {{/each}}
+    </ul>
+</template>
+
+
+<template name="post">
+    {{> commentsBox id=post._id customTemplate="myComments"}}
+</template>
+```
+
+Have a look at the [default template](https://github.com/ARKHAM-Enterprises/meteor-comments-ui/blob/master/lib/templates.html) to see what data you have available.
+
+### Text Strings
 
 You might see that there is a lot of predefined text that is shown in the commentsBox component. You can change those by passing a __content__
 parameter in the html.
@@ -64,7 +89,7 @@ You can configure following values that changed the comments-ui functionality.
 
 ```javascript
 Comments.ui.config({
-    limit: 10, // default 30
+    limit: 20, // default 10
     loadMoreCount: 20, // default 20
     template: 'bootstrap', // default 'semantic-ui'
     defaultAvatar: 'my/defaultavatarimage.png' // default 'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png'
