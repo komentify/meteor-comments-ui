@@ -46,6 +46,7 @@ if (Meteor.isClient) {
 
     Comments.add('fakeDoc1', 'I liked this');
     Comments.add('fakeDoc1', 'I did not like it');
+    Comments.add('fakeDoc1', '');
 
     var comments = Comments.get('fakeDoc1').fetch();
     test.equal(comments[0].content, 'I did not like it');
@@ -71,6 +72,18 @@ if (Meteor.isClient) {
     test.equal(Comments.get('getDoc1').fetch()[0].content, 'I will like it not');
     test.equal(Comments.get('getDoc2').fetch()[0].content, 'This is another comment');
     test.equal(Comments.get('nonExistant').count(), 0);
+  });
+
+  Tinytest.add('Comments - getOne', function (test) {
+    Meteor.call('removeGeneratedDocs', Meteor.userId());
+
+    Comments.add('getDoc1', 'I will like it');
+
+    var comment = Comments.getAll().fetch()[0];
+
+    test.isUndefined(Comments.getOne());
+    test.equal(comment._id, Comments.getOne(comment._id)._id);
+    test.equal(comment.content, Comments.getOne(comment._id).content);
   });
 
   Tinytest.add('Comments - getAll', function (test) {
@@ -150,6 +163,97 @@ if (Meteor.isClient) {
     Comments.like(comments[0]._id);
     comments = Comments.get('likesDoc').fetch();
     test.equal(comments[0].likes.length, 1);
+  });
+
+  Tinytest.add('Comments - Replies - add', function (test) {
+    Meteor.call('removeGeneratedDocs', Meteor.userId());
+
+    Comments.add('replyDoc', 'Awesome stuff');
+
+    var comment = Comments.get('replyDoc').fetch()[0];
+
+    Comments.reply(comment._id, comment, 'But I don\'t like it!');
+    Comments.reply(comment._id, comment, '');
+    Comments.reply(comment._id, Comments.get('replyDoc').fetch()[0].enhancedReplies()[0], 'what did you just say?');
+    Comments.reply(comment._id, Comments.get('replyDoc').fetch()[0].enhancedReplies()[0], 'How can you not like it');
+
+    Comments.reply(comment._id, comment, 'I kinda do like it');
+
+    comment = Comments.get('replyDoc').fetch()[0];
+
+    test.equal(comment.content, 'Awesome stuff');
+    test.equal(comment.replies[0].content, 'I kinda do like it');
+    test.equal(comment.replies[1].content, 'But I don\'t like it!');
+    test.equal(comment.replies[1].replies[0].content, 'How can you not like it');
+    test.equal(comment.replies[1].replies[1].content, 'what did you just say?');
+  });
+
+  Tinytest.add('Comments - Replies - edit', function (test) {
+    Meteor.call('removeGeneratedDocs', Meteor.userId());
+
+    Comments.add('replyDoc', 'Awesome stuff');
+
+    var comment = Comments.get('replyDoc').fetch()[0];
+
+    Comments.reply(comment._id, comment, 'But I don\'t like it!');
+    Comments.reply(comment._id, Comments.get('replyDoc').fetch()[0].enhancedReplies()[0], 'what did you just say?');
+    Comments.editReply(comment._id, Comments.get('replyDoc').fetch()[0].enhancedReplies()[0], 'But I do indeed like it!');
+    Comments.editReply(comment._id, Comments.get('replyDoc').fetch()[0].enhancedReplies()[0].replies[0], 'hmm ok');
+
+    comment = Comments.get('replyDoc').fetch()[0];
+
+    test.equal(comment.replies[0].content, 'But I do indeed like it!');
+    test.equal(comment.replies[0].replies[0].content, 'hmm ok');
+  });
+
+  Tinytest.add('Comments - Replies - like', function (test) {
+    Meteor.call('removeGeneratedDocs', Meteor.userId());
+
+    Comments.add('replyDoc', 'Awesome stuff');
+
+    var comment = Comments.get('replyDoc').fetch()[0];
+
+    Comments.reply(comment._id, comment, 'But I don\'t like it!');
+    Comments.reply(comment._id, Comments.get('replyDoc').fetch()[0].enhancedReplies()[0], 'what did you just say?');
+    Comments.likeReply(comment._id, Comments.get('replyDoc').fetch()[0].enhancedReplies()[0]);
+    Comments.likeReply(comment._id, Comments.get('replyDoc').fetch()[0].enhancedReplies()[0].replies[0]);
+
+    comment = Comments.get('replyDoc').fetch()[0];
+
+    test.equal(comment.likes.length, 0);
+    test.equal(comment.replies[0].likes.length, 1);
+    test.equal(comment.replies[0].replies[0].likes.length, 1);
+
+    Comments.likeReply(comment._id, Comments.get('replyDoc').fetch()[0].enhancedReplies()[0]);
+    Comments.likeReply(comment._id, Comments.get('replyDoc').fetch()[0].enhancedReplies()[0].replies[0]);
+
+    comment = Comments.get('replyDoc').fetch()[0];
+
+    test.equal(comment.replies[0].likes.length, 0);
+    test.equal(comment.replies[0].replies[0].likes.length, 0);
+  });
+
+
+  Tinytest.add('Comments - Replies - remove', function (test) {
+    Meteor.call('removeGeneratedDocs', Meteor.userId());
+
+    Comments.add('replyDoc', 'Awesome stuff');
+
+    var comment = Comments.get('replyDoc').fetch()[0];
+
+    Comments.reply(comment._id, comment, 'But I don\'t like it!');
+    Comments.reply(comment._id, Comments.get('replyDoc').fetch()[0].enhancedReplies()[0], 'what did you just say?');
+    Comments.reply(comment._id, Comments.get('replyDoc').fetch()[0].enhancedReplies()[0], 'wow');
+    Comments.removeReply(comment._id, Comments.get('replyDoc').fetch()[0].enhancedReplies()[0].replies[1]);
+
+    comment = Comments.get('replyDoc').fetch()[0];
+    test.equal(comment.replies[0].replies.length, 1);
+    test.equal(comment.replies[0].replies[0].content, 'wow');
+
+    Comments.removeReply(comment._id, Comments.get('replyDoc').fetch()[0].enhancedReplies()[0]);
+
+    comment = Comments.get('replyDoc').fetch()[0];
+    test.equal(comment.replies, []);
   });
 }
 
