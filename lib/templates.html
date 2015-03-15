@@ -8,7 +8,7 @@
         <div class="comments-box">
             {{#if templateIs 'bootstrap' }}
                 <h3>{{ take key='title' default='Comments'}}</h3>
-    
+
                 {{#if loginAction}}
                     <div class="alert alert-warning" role="alert">You need to login to {{loginAction}}</div>
                 {{/if}}
@@ -25,7 +25,7 @@
                     <button type="button" class="btn btn-success btn-lg btn-block loadmore-action">{{ take key='load-more' default='Load more comments' }}</button>
                 {{/if}}
             {{/if}}
-    
+
             {{#if templateIs 'semantic-ui' }}
                 <div class="ui comments">
                     <h3 class="ui header">{{ take key='title' default='Comments'}}</h3>
@@ -43,6 +43,42 @@
                             <div class="ui fluid green loadmore-action button">{{ take key='load-more' default='Load more comments' }}</div>
                         {{/if}}
                 </div>
+            {{/if}}
+
+            {{#if templateIs 'materialize' }}
+              <div class="ui comments">
+
+                  <h3>
+                    {{ take key='title' default='Comments'}}
+                  </h3>
+
+                  {{#if loginAction}}
+                      <div class="card-panel red lighten-2">
+                          You need to login to {{loginAction}}
+                      </div>
+                  {{/if}}
+
+                  {{> textarea }}
+
+                  <div class="row">
+                      <div class="col s12">
+                        {{#each comment}}
+                            {{> commentsSingleComment }}
+                        {{/each}}
+                      </div>
+                  </div>
+
+                  {{#if hasMoreComments}}
+                      <button class="waves-effect waves-light green btn loadmore-action">
+                          <i class="mdi-navigation-more-horiz left"></i>
+                          {{ take key='load-more' default='Load more comments' }}
+                      </button>
+                      <div class="ui fluid green loadmore-action button">
+                        {{ take key='load-more' default='Load more comments' }}
+                      </div>
+                  {{/if}}
+
+              </div>
             {{/if}}
         </div>
     {{/if}}
@@ -92,7 +128,7 @@
             </div>
         </div>
     {{/if}}
-    
+
     {{#if templateIs 'bootstrap' }}
         <div class="media">
             <div class="media-left">
@@ -144,6 +180,67 @@
             </div>
         </div>
     {{/if}}
+
+    {{#if templateIs 'materialize' }}
+      <div class="card comment">
+
+          {{> avatar userId=userId class="left" }}
+
+          {{! Comment Title}}
+          <div class="card-content">
+              <span class="card-title">
+                {{user.displayName}} <small>{{createdAgo}}</small>
+              </span>
+
+              {{! Comment Content}}
+              <p class="comment-content" data-id="{{commentId}}">{{content}}</p>
+          </div>
+
+          <div class="card-action">
+              {{! Comment Actions}}
+              <button class="btn waves-effect waves-light like-action {{#if hasLiked}}teal{{else}}grey{{/if}}">
+                  <i class="mdi-action-thumb-up left"></i>
+                  <small>{{likesCount}}</small>
+              </button>
+
+              <button class="btn waves-effect waves-light reply-action">
+                  <i class="mdi-content-reply left"></i>
+                  {{ take key='reply' default='Reply' }}
+              </button>
+
+              {{#if isOwnComment}}
+                {{#if isEditable}}
+                <button class="btn waves-effect waves-light save-action">
+                    {{ take key='save' default='Save' }}
+                </button>
+                {{else}}
+                <button class="btn waves-effect waves-light edit-action">
+                    {{ take key='edit' default='Edit' }}
+                </button>
+                {{/if}}
+
+                <button class="btn waves-effect waves-light remove-action">
+                    {{ take key='edit' default='Remove' }}
+                </button>
+              {{/if}}
+          </div>
+
+          <div>
+            {{#if addReply}}
+                <div class="create-reply">
+                    {{> textarea reply=true scope=this }}
+                </div>
+            {{/if}}
+
+            {{#if reply}}
+                {{#each reply}}
+                    {{> commentsSingleComment }}
+                {{/each}}
+            {{/if}}
+          </div>
+
+      </div>
+    {{/if}}
 </template>
 
 <template name="commentsTextarea">
@@ -169,5 +266,20 @@
             </div>
             <button type="submit" class="btn btn-primary">{{ take key=addButtonKey default=addButtonText }}</button>
         </form>
+    {{/if}}
+
+    {{#if templateIs 'materialize' }}
+      <form class="col s12 {{#if reply}}reply-form{{else}}comment-form{{/if}}">
+          <div class="row">
+              <div class="input-field col s12">
+                <textarea
+                  placeholder="{{ take key='placeholder-textarea' default='Join the discussion'}}"
+                  class="materialize-textarea {{#if reply}}create-reply{{else}}create-comment{{/if}}" rows="3"></textarea>
+              </div>
+          </div>
+          <button type="submit" class="waves-effect waves-light btn">
+              {{ take key=addButtonKey default=addButtonText }}
+          </button>
+      </form>
     {{/if}}
 </template>
