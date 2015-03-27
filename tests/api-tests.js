@@ -233,7 +233,6 @@ if (Meteor.isClient) {
     test.equal(comment.replies[0].replies[0].likes.length, 0);
   });
 
-
   Tinytest.add('Comments - Replies - remove', function (test) {
     Meteor.call('removeGeneratedDocs', Meteor.userId());
 
@@ -254,6 +253,33 @@ if (Meteor.isClient) {
 
     comment = Comments.get('replyDoc').fetch()[0];
     test.equal(comment.replies, []);
+  });
+
+  Tinytest.add('Comments - changeSchema', function (test) {
+    Comments.changeSchema(function (currentSchema) {
+      currentSchema.file = { type: Object, max: 15 };
+      return currentSchema;
+    });
+
+    test.equal(Comments._collection.simpleSchema().schema().file, { type: Object, max: 15 });
+
+    Comments.changeSchema(function (currentSchema) {
+      currentSchema.image = { type: Object, optional: true };
+    });
+
+    test.equal(Comments._collection.simpleSchema().schema().image, { type: Object, optional: true });
+
+    Comments.changeSchema(function (currentSchema) {
+      currentSchema = null;
+    });
+
+    test.equal(Comments._collection.simpleSchema().schema().image, { type: Object, optional: true });
+
+    Comments.changeSchema(function (currentSchema) {
+      return false;
+    });
+
+    test.equal(Comments._collection.simpleSchema().schema().image, { type: Object, optional: true });
   });
 }
 

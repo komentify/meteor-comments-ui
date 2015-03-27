@@ -32,4 +32,5 @@ Package.onTest(function(api) {
   api.use('arkham:comments-ui');
 
   api.addFiles('tests/api-tests.js');
+  api.addFiles('tests/ui-tests.js', 'client');
 });
