@@ -54,25 +54,20 @@ Have a look at the [default template](https://github.com/ARKHAM-Enterprises/mete
 
 ### Text Strings
 
-You might see that there is a lot of predefined text that is shown in the commentsBox component. You can change those by passing a __content__
-parameter in the html.
+You might see that there is a lot of predefined text that is shown in the commentsBox component. You can change those by calling a __setContent__
+method.
 
 ```javascript
-Template.blogPost.helpers({
-    strings: function () {
-        return {
-            'title': 'Kommentare',
-            'add-button': 'Kommentar hinzufügen'
-        };
-    },
-    ...
+Comments.ui.setContent({
+  title: 'Kommentieren',
+  save: 'Speichern',
+  reply: 'Antworten',
+  edit: 'Editieren',
+  'placeholder-textarea': 'Teile uns deine Meinung mit',
+  'add-button-reply': 'Antwort hinzufügen',
+  'add-button': 'Kommentar hinzufügen',
+  'load-more': 'Mehr Kommentare laden'
 });
-```
-
-```html
-<template name="blogPost">
-    {{> commentsBox id=blogPostId content=strings}}
-</template>
 ```
 
 The configurable values are:
