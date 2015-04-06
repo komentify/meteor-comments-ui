@@ -60,6 +60,11 @@
                 <div class="text comment-content" data-id="{{commentId}}">
                     {{content}}
                 </div>
+                {{#if image}}
+                    <div class="content-image">
+                        <img src="{{image}}"/>
+                    </div>
+                {{/if}}
                 <div class="actions">
                     <a class="rating unstyled-link like-action {{#if hasLiked}}active{{/if}}">
                         {{likesCount}}
