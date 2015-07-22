@@ -44,6 +44,24 @@
                         {{/if}}
                 </div>
             {{/if}}
+
+            {{#if templateIs 'ionic' }}
+                <h3>{{ take key='title' default='Comments'}}</h3>
+
+                {{#if loginAction}}
+                    <div class="bar bar-header bar-assertive">You need to login to {{loginAction}}</div>
+                {{/if}}
+
+                {{> textarea }}
+
+                {{#each comment}}
+                    {{> commentsSingleComment}}
+                {{/each}}
+
+                {{#if hasMoreComments}}
+                    <button type="button" class="button button-block button-positive loadmore-action">{{ take key='load-more' default='Load more comments' }}</button>
+                {{/if}}
+            {{/if}}
         </div>
     {{/if}}
 </template>
@@ -149,6 +167,70 @@
             </div>
         </div>
     {{/if}}
+
+    {{#if templateIs 'ionic' }}
+        <div class="list card">
+            <div class="item item-avatar">
+                <img src='{{avatarUrl}}'>
+                <p><small>{{createdAgo}}</small></p>
+                <p><strong>{{user.displayName}}</strong></p>
+            </div>
+
+            <div class="item item-body comment">
+                <p class="comment-content" data-id="{{commentId}}">{{content}}</p>
+
+                <div class="actions">
+                    <div class="button-bar">
+                        <a class="button button-clear {{#if hasLiked}}button-positive{{/if}} icon-left ion-thumbsup like-action">
+                            {{likesCount}}
+                        </a>
+
+                        <div class="button button-clear ion-reply reply-action">
+                            {{ take key='reply' }}
+                        </div>
+
+                        {{#if isOwnComment}}
+                        {{#if isEditable}}
+                        <div class="button button-clear ion-archive save-action">
+                            {{ take key='save' }}
+                        </div>
+                        {{else}}
+                        <div class="button button-clear ion-edit edit-action">
+                            {{ take key='edit' }}
+                        </div>
+                        {{/if}}
+                        <div class="button button-clear button-assertive ion-trash-a remove-action">
+                            {{ take key='remove' }}
+                        </div>
+                        {{else}}
+                        <a class="button button-clear"></a>
+                        <a class="button button-clear"></a>
+                        {{/if}}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        {{#if addReply}}
+            <div class="padding-left">
+                <div class="card">
+                    <div class="item">
+                        <div class="create-reply">
+                            {{> textarea reply=true scope=this }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/if}}
+
+        {{#if reply}}
+            <div class="padding-left">
+                {{#each reply}}
+                    {{> commentsSingleComment }}
+                {{/each}}
+            </div>
+        {{/if}}
+    {{/if}}
 </template>
 
 <template name="commentsTextarea">
@@ -173,6 +255,21 @@
                     class="form-control {{#if reply}}create-reply{{else}}create-comment{{/if}}" rows="3"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">{{ take key=addButtonKey default=addButtonText }}</button>
+        </form>
+    {{/if}}
+
+    {{#if templateIs 'ionic' }}
+        <form class="{{#if reply}}reply-form{{else}}comment-form{{/if}}" role="form" action="">
+            <div class="list list-inset">
+                <label class="item item-input">
+                    <textarea
+                        placeholder="{{ take key='placeholder-textarea' default='Join the discussion'}}"
+                        class="form-control {{#if reply}}create-reply{{else}}create-comment{{/if}}" rows="3"></textarea>
+                </label>
+            </div>
+            <div class="padding">
+                <button type="submit" class="button button-block button-positive">{{ take key=addButtonKey default=addButtonText }}</button>
+            </div>
         </form>
     {{/if}}
 </template>
