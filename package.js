@@ -1,7 +1,7 @@
 Package.describe({
   name: 'arkham:comments-ui',
   summary: 'Simple templates for disqus-like comment functionality',
-  version: '0.2.10',
+  version: '0.2.11',
   git: 'https://github.com/ARKHAM-Enterprises/meteor-comments-ui.git'
 });
 
@@ -12,14 +12,14 @@ Package.onUse(function(api) {
   // Meteor Core Dependencies
   api.use(['accounts-password@1.0.1'], { weak: true });
   api.use([
-    'underscore', 'mongo-livedata', 'templating', 'jquery', 'check', 'less', 'tracker', 'check', 'session', 'random'
+    'underscore', 'mongo-livedata', 'templating', 'jquery', 'check', 'less@2.5.0_2', 'tracker', 'check', 'session', 'random'
   ]);
 
   // Atmosphere Package Dependencies
   api.use([
-    'aldeed:collection2@2.2.0', 'aldeed:simple-schema@1.2.0', 'dburles:collection-helpers@1.0.1',
-    'flamparski:moment-locales@0.0.3', 'utilities:avatar@0.7.15', 'reywood:publish-composite@1.3.5',
-    'aldeed:template-extension@3.1.1'
+    'aldeed:collection2@2.5.0', 'aldeed:simple-schema@1.3.3', 'dburles:collection-helpers@1.0.3',
+    'flamparski:moment-locales@0.0.3', 'utilities:avatar@0.9.1', 'reywood:publish-composite@1.4.2',
+    'aldeed:template-extension@3.4.3'
   ]);
 
   // Package specific globals and files
