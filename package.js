@@ -18,7 +18,7 @@ Package.onUse(function(api) {
   // Atmosphere Package Dependencies
   api.use([
     'aldeed:collection2@2.5.0', 'aldeed:simple-schema@1.3.3', 'dburles:collection-helpers@1.0.3',
-    'flamparski:moment-locales@0.0.3', 'utilities:avatar@0.9.1', 'reywood:publish-composite@1.4.2',
+    'momentjs:moment@2.10.6', 'rzymek:moment-locales@2.9.0', 'utilities:avatar@0.9.1', 'reywood:publish-composite@1.4.2',
     'aldeed:template-extension@3.4.3'
   ]);
 
