@@ -53,10 +53,6 @@
       "1.0.4"
     ],
     [
-      "flamparski:moment-locales",
-      "0.0.3"
-    ],
-    [
       "follower-livedata",
       "1.0.2"
     ],
@@ -105,6 +101,10 @@
       "1.1.3"
     ],
     [
+      "momentjs:moment",
+      "2.10.6"
+    ],
+    [
       "minimongo",
       "1.0.5"
     ],
@@ -143,6 +143,10 @@
     [
       "reywood:publish-composite",
       "1.3.5"
+    ],
+    [
+      "rzymek:moment-locales",
+      "2.9.0"
     ],
     [
       "session",
