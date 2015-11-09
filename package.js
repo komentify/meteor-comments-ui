@@ -12,7 +12,7 @@ Package.onUse(function(api) {
   // Meteor Core Dependencies
   api.use(['accounts-password@1.0.1'], { weak: true });
   api.use([
-    'underscore', 'mongo-livedata', 'templating', 'jquery', 'check', 'less@2.5.0_2', 'tracker', 'check', 'session', 'random'
+    'underscore', 'mongo-livedata', 'templating', 'jquery', 'check', 'less@2.5.0_2', 'tracker', 'check', 'session', 'random', 'markdown'
   ]);
 
   // Atmosphere Package Dependencies
