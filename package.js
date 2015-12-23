@@ -1,7 +1,7 @@
 Package.describe({
   name: 'arkham:comments-ui',
   summary: 'Simple templates for disqus-like comment functionality',
-  version: '0.2.12',
+  version: '0.2.13',
   git: 'https://github.com/ARKHAM-Enterprises/meteor-comments-ui.git'
 });
 
