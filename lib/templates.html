@@ -76,7 +76,13 @@
                     <span class="date">{{createdAgo}}</span>
                 </div>
                 <div class="text comment-content" data-id="{{commentId}}">
-                    {{content}}
+                    {{#if isMarkdown}}
+                        {{#markdown}}
+                            {{content}}
+                        {{/markdown}}
+                    {{else}}
+                        {{content}}
+                    {{/if}}
                 </div>
                 {{#if image}}
                     <div class="content-image">
@@ -124,7 +130,15 @@
             <div class="media-body comment">
                 <h4 class="media-heading">{{user.displayName}} <small>{{createdAgo}}</small></h4>
                 <div class="content">
-                    <p class="comment-content" data-id="{{commentId}}">{{content}}</p>
+                    <p class="comment-content" data-id="{{commentId}}">
+                        {{#if isMarkdown}}
+                            {{#markdown}}
+                                {{content}}
+                            {{/markdown}}
+                        {{else}}
+                            {{content}}
+                        {{/if}}
+                    </p>
 
                     <div class="actions btn-group btn-group-xs">
                         <div class="btn {{#if hasLiked}}btn-primary{{else}}btn-default{{/if}} like-action" aria-label="Left Align">
@@ -177,7 +191,15 @@
             </div>
 
             <div class="item item-body comment">
-                <p class="comment-content" data-id="{{commentId}}">{{content}}</p>
+                <p class="comment-content" data-id="{{commentId}}">
+                    {{#if isMarkdown}}
+                        {{#markdown}}
+                            {{content}}
+                        {{/markdown}}
+                    {{else}}
+                        {{content}}
+                    {{/if}}
+                </p>
 
                 <div class="actions">
                     <div class="button-bar">
