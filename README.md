@@ -100,6 +100,7 @@ Comments.ui.config({
     limit: 20, // default 10
     loadMoreCount: 20, // default 20
     template: 'bootstrap', // default 'semantic-ui'
-    defaultAvatar: 'my/defaultavatarimage.png' // default 'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png'
+    defaultAvatar: 'my/defaultavatarimage.png' // default 'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png',
+    markdown: true // default false
 });
 ```
