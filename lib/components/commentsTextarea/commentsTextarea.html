@@ -1,0 +1,50 @@
+<template name="commentsTextarea">
+  {{#if templateIs 'semantic-ui' }}
+    <form class="ui reply form {{#if reply}}reply-form{{else}}comment-form{{/if}}">
+      {{#if showAnonymousInput reply}}
+      <div class="two fields">
+        <div class="field">
+          <input required type="text" class="ui input anon-username" value="{{username}}" placeholder="Your name" />
+        </div>
+        <div class="field">
+          <input required type="email" class="ui input anon-email" value="{{mail}}" placeholder="Your mail" />
+        </div>
+      </div>
+      {{/if}}
+      <div class="field">
+                  <textarea
+                          placeholder="{{ take key='placeholder-textarea' default='Join the discussion'}}"
+                          class="{{#if reply}}create-reply{{else}}create-comment{{/if}}"></textarea>
+      </div>
+      <button type="submit" class="ui blue labeled submit icon button">
+        <i class="icon edit"></i> {{ take key=addButtonKey default=addButtonText }}
+      </button>
+    </form>
+  {{/if}}
+
+  {{#if templateIs 'bootstrap' }}
+    <form class="{{#if reply}}reply-form{{else}}comment-form{{/if}}" role="form" action="">
+      <div class="form-group">
+                  <textarea
+                          placeholder="{{ take key='placeholder-textarea' default='Join the discussion'}}"
+                          class="form-control {{#if reply}}create-reply{{else}}create-comment{{/if}}" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">{{ take key=addButtonKey default=addButtonText }}</button>
+    </form>
+  {{/if}}
+
+  {{#if templateIs 'ionic' }}
+    <form class="{{#if reply}}reply-form{{else}}comment-form{{/if}}" role="form" action="">
+      <div class="list list-inset">
+        <label class="item item-input">
+                      <textarea
+                              placeholder="{{ take key='placeholder-textarea' default='Join the discussion'}}"
+                              class="form-control {{#if reply}}create-reply{{else}}create-comment{{/if}}" rows="3"></textarea>
+        </label>
+      </div>
+      <div class="padding">
+        <button type="submit" class="button button-block button-positive">{{ take key=addButtonKey default=addButtonText }}</button>
+      </div>
+    </form>
+  {{/if}}
+</template>
