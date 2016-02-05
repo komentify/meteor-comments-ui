@@ -4,10 +4,10 @@
       {{#if showAnonymousInput reply}}
       <div class="two fields">
         <div class="field">
-          <input required type="text" class="ui input anon-username" value="{{username}}" placeholder="Your name" />
+          <input required type="text" class="ui input anon-username" value="{{anonymousData.username}}" placeholder="Your name" />
         </div>
         <div class="field">
-          <input required type="email" class="ui input anon-email" value="{{mail}}" placeholder="Your mail" />
+          <input required type="email" class="ui input anon-email" value="{{anonymousData.email}}" placeholder="Your email" />
         </div>
       </div>
       {{/if}}
@@ -17,7 +17,7 @@
                           class="{{#if reply}}create-reply{{else}}create-comment{{/if}}"></textarea>
       </div>
       <button type="submit" class="ui blue labeled submit icon button">
-        <i class="icon edit"></i> {{ take key=addButtonKey default=addButtonText }}
+        <i class="icon edit"></i> {{ take key=addButtonKey default=defaultAddButtonText }}
       </button>
     </form>
   {{/if}}
@@ -29,7 +29,7 @@
                           placeholder="{{ take key='placeholder-textarea' default='Join the discussion'}}"
                           class="form-control {{#if reply}}create-reply{{else}}create-comment{{/if}}" rows="3"></textarea>
       </div>
-      <button type="submit" class="btn btn-primary">{{ take key=addButtonKey default=addButtonText }}</button>
+      <button type="submit" class="btn btn-primary">{{ take key=addButtonKey default=defaultAddButtonText }}</button>
     </form>
   {{/if}}
 
@@ -43,7 +43,7 @@
         </label>
       </div>
       <div class="padding">
-        <button type="submit" class="button button-block button-positive">{{ take key=addButtonKey default=addButtonText }}</button>
+        <button type="submit" class="button button-block button-positive">{{ take key=addButtonKey default=defaultAddButtonText }}</button>
       </div>
     </form>
   {{/if}}
