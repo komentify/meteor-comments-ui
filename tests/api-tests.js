@@ -4,6 +4,7 @@
 
 Meteor.methods({
   'removeGeneratedDocs': function (id) {
+    check(id, String);
     Comments._collection.remove({ userId: id });
   }
 });
@@ -27,6 +28,7 @@ if (Meteor.isClient) {
 
   Meteor.methods({
     'getDoc' : function (referenceId) {
+      check(referenceId, String);
       return Comments._collection.findOne({ referenceId: referenceId });
     }
   });
@@ -195,10 +197,8 @@ if (Meteor.isClient) {
 
     var comment = Comments.get('replyDoc').fetch()[0];
 
-
     Comments.reply(comment._id, comment, 'But I don\'t like it!');
     Comments.reply(comment._id, Comments.get('replyDoc').fetch()[0].enhancedReplies()[0], 'what did you just say?');
-    console.log(Comments.get('replyDoc').fetch()[0].enhancedReplies()[0]);
     Comments.editReply(comment._id, Comments.get('replyDoc').fetch()[0].enhancedReplies()[0], 'But I do indeed like it!');
     Comments.editReply(comment._id, Comments.get('replyDoc').fetch()[0].enhancedReplies()[0].replies[0], 'hmm ok');
 

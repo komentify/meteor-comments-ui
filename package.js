@@ -61,14 +61,15 @@ Package.onUse(function(api) {
   ], 'client');
 
   api.addFiles([
-    'lib/server/publish.js'
+    'lib/server/publish.js',
+    'lib/services/hashing.js'
   ], 'server');
 
   api.export('Comments');
 });
 
 Package.onTest(function(api) {
-  api.use(['tinytest', 'accounts-password']);
+  api.use(['tinytest', 'accounts-password', 'audit-argument-checks', 'check']);
   api.use('arkham:comments-ui');
 
   api.addFiles('tests/api-tests.js');
