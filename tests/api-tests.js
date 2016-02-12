@@ -46,6 +46,10 @@ Tinytest.add('Comments - config', function (test) {
   const defaultConfig = Comments.config();
   test.isFalse(defaultConfig.anonymous);
 
+  test.isTrue(defaultConfig.replies);
+  test.equal(defaultConfig.anonymousSalt, 'changeMe');
+  test.equal(defaultConfig.publishUserFields, { profile: 1, emails: 1, username: 1 });
+
   Comments.config({
     something: 'wow'
   });
