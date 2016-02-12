@@ -1,7 +1,9 @@
 <template name="commentsSingleComment">
   {{#if templateIs 'semantic-ui' }}
     <div data-id="{{_id}}" class="comment">
-      {{> avatar userId=userId }}
+      <a class="avatar">
+        <img alt="Avatar of {{user.displayName}}" src="{{avatarUrl}}" />
+      </a>
       <div class="content">
         <a class="author">{{user.displayName}}</a>
         <div class="metadata">
@@ -57,7 +59,7 @@
   {{#if templateIs 'bootstrap' }}
     <div class="media">
       <div class="media-left">
-        {{> avatar userId=userId class="" }}
+        <img alt="Avatar of {{user.displayName}}" class="img-thumbnail img-avatar" src="{{avatarUrl}}" />
       </div>
       <div class="media-body comment">
         <h4 class="media-heading">{{user.displayName}} <small>{{createdAgo}}</small></h4>
@@ -117,7 +119,7 @@
   {{#if templateIs 'ionic' }}
     <div class="list card">
       <div class="item item-avatar">
-        <img src='{{avatarUrl}}'>
+        <img alt="Avatar of {{user.displayName}}" src='{{avatarUrl}}' />
         <p><small>{{createdAgo}}</small></p>
         <p><strong>{{user.displayName}}</strong></p>
       </div>

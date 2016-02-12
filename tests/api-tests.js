@@ -42,6 +42,18 @@ if (Meteor.isClient) {
  * Run tests
  */
 
+Tinytest.add('Comments - config', function (test) {
+  const defaultConfig = Comments.config();
+  test.isFalse(defaultConfig.anonymous);
+
+  Comments.config({
+    something: 'wow'
+  });
+
+  const newConfig = Comments.config();
+  test.equal(newConfig.something, 'wow');
+});
+
 if (Meteor.isClient) {
   Tinytest.add('Comments - add', function (test) {
     Meteor.call('removeGeneratedDocs', Meteor.userId());
