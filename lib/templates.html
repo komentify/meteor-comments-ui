@@ -77,9 +77,7 @@
                 </div>
                 <div class="text comment-content" data-id="{{commentId}}">
                     {{#if isMarkdown}}
-                        {{#markdown}}
-                            {{content}}
-                        {{/markdown}}
+                        {{#markdown}}{{content}}{{/markdown}}
                     {{else}}
                         {{content}}
                     {{/if}}
@@ -132,9 +130,7 @@
                 <div class="content">
                     <p class="comment-content" data-id="{{commentId}}">
                         {{#if isMarkdown}}
-                            {{#markdown}}
-                                {{content}}
-                            {{/markdown}}
+                            {{#markdown}}{{content}}{{/markdown}}
                         {{else}}
                             {{content}}
                         {{/if}}
@@ -193,9 +189,7 @@
             <div class="item item-body comment">
                 <p class="comment-content" data-id="{{commentId}}">
                     {{#if isMarkdown}}
-                        {{#markdown}}
-                            {{content}}
-                        {{/markdown}}
+                        {{#markdown}}{{content}}{{/markdown}}
                     {{else}}
                         {{content}}
                     {{/if}}
