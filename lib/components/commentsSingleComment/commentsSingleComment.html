@@ -11,9 +11,9 @@
         </div>
         <div class="text comment-content" data-id="{{commentId}}">
           {{#if uiConfigGet 'markdown'}}
-            {{#markdown}}{{content}}{{/markdown}}
+            <span class="text-span">{{#markdown}}{{content}}{{/markdown}}</span>
           {{else}}
-            {{content}}
+            <div class="text-span">{{content}}</div>
           {{/if}}
         </div>
         {{#if image}}
@@ -66,9 +66,9 @@
         <div class="content">
           <p class="comment-content" data-id="{{commentId}}">
             {{#if uiConfigGet 'markdown'}}
-              {{#markdown}}{{content}}{{/markdown}}
+              <span class="text-span">{{#markdown}}{{content}}{{/markdown}}</span>
             {{else}}
-              {{content}}
+              <span class="text-span">{{content}}</span>
             {{/if}}
           </p>
 
@@ -127,9 +127,9 @@
       <div class="item item-body comment">
         <p class="comment-content" data-id="{{commentId}}">
           {{#if uiConfigGet 'markdown'}}
-            {{#markdown}}{{content}}{{/markdown}}
+            <span class="text-span">{{#markdown}}{{content}}{{/markdown}}</span>
           {{else}}
-            {{content}}
+            <span class="text-span">{{content}}</span>
           {{/if}}
         </p>
 
