@@ -43,6 +43,8 @@ Package.onUse(function(api) {
   ]);
 
   api.addFiles([
+    'lib/services/media-analyzers/image.js',
+    'lib/services/media-analyzers/youtube.js',
     'lib/services/user.js',
     'lib/services/time-tick.js',
     'lib/services/media.js',
