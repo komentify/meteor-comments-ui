@@ -52,7 +52,6 @@ You can customize the output of the commentsBox by adding custom templates as pa
     <div class="loading-spinner"></div>
 </template>
 
-
 <template name="post">
     {{> commentsBox 
     	id=post._id 
@@ -86,8 +85,7 @@ If you do not want to publish certain user data by default you can configure the
 // Client and Server
 Comments.config({
 	publishUserFields: { 
-	  profile: 1, 
-	  username: 1
+	  profile: 1
 	},
 	generateUsername: function (user) {
 	  return user.profile.username;
@@ -126,7 +124,7 @@ Changing the [Simple Schema](https://github.com/aldeed/meteor-simple-schema) def
 
 ```javascript
 Comments.changeSchema(function (currentSchema) {
-  currentSchema.image = { type: Object, optional: true };
+  currentSchema.metaInfo = { type: Object, optional: true };
 });
 ```
 
