@@ -84,12 +84,12 @@ If you do not want to publish certain user data by default you can configure the
 ```javascript
 // Client and Server
 Comments.config({
-	publishUserFields: { 
-	  profile: 1
-	},
-	generateUsername: function (user) {
-	  return user.profile.username;
-	}
+  publishUserFields: { 
+    profile: 1
+  },
+  generateUsername: function (user) {
+     return user.profile.username;
+  }
 });
 ```
 
