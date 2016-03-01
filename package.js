@@ -1,18 +1,30 @@
 Package.describe({
   name: 'arkham:comments-ui',
   summary: 'Simple templates for disqus-like comment functionality',
-  version: '0.2.15',
+  version: '1.0.0',
   git: 'https://github.com/ARKHAM-Enterprises/meteor-comments-ui.git'
 });
 
 Package.onUse(function(api) {
   // Meteor Version
-  api.versionsFrom('METEOR@1.0.1');
+  api.versionsFrom('METEOR@1.2.1');
 
   // Meteor Core Dependencies
   api.use(['accounts-password@1.0.1'], { weak: true });
   api.use([
-    'underscore', 'mongo-livedata', 'templating', 'jquery', 'check', 'less@2.5.0_2', 'tracker', 'check', 'session', 'random', 'markdown'
+    'accounts-base',
+    'ecmascript',
+    'underscore',
+    'mongo-livedata',
+    'templating',
+    'jquery',
+    'check',
+    'less@2.5.0_2',
+    'tracker',
+    'check',
+    'random',
+    'markdown',
+    'reactive-dict'
   ]);
 
   // Atmosphere Package Dependencies
@@ -23,14 +35,43 @@ Package.onUse(function(api) {
   ]);
 
   // Package specific globals and files
-  api.addFiles('lib/model.js');
-  api.addFiles(['lib/templates.html', 'lib/templates/commentsBox.less']);
-  api.addFiles(['lib/ui.js', 'lib/templates/commentsBox.js'], 'client');
+  api.addFiles([
+    'lib/collections/anonymous-user.js',
+    'lib/collections/comments.js',
+    'lib/collections/methods/anonymous-user.js',
+    'lib/collections/methods/comments.js'
+  ]);
+
+  api.addFiles([
+    'lib/services/media-analyzers/image.js',
+    'lib/services/media-analyzers/youtube.js',
+    'lib/services/user.js',
+    'lib/services/time-tick.js',
+    'lib/services/media.js',
+    'lib/components/commentsBox/commentsBox.html',
+    'lib/components/commentsBox/commentsBox.less',
+    'lib/components/commentsSingleComment/commentsSingleComment.html',
+    'lib/components/commentsTextarea/commentsTextarea.html',
+    'lib/api.js'
+  ]);
+
+  api.addFiles([
+    'lib/components/helpers.js',
+    'lib/components/commentsBox/commentsBox.js',
+    'lib/components/commentsSingleComment/commentsSingleComment.js',
+    'lib/components/commentsTextarea/commentsTextarea.js'
+  ], 'client');
+
+  api.addFiles([
+    'lib/server/publish.js',
+    'lib/services/hashing.js'
+  ], 'server');
+
   api.export('Comments');
 });
 
 Package.onTest(function(api) {
-  api.use(['tinytest', 'accounts-password']);
+  api.use(['tinytest', 'accounts-password', 'audit-argument-checks', 'check']);
   api.use('arkham:comments-ui');
 
   api.addFiles('tests/api-tests.js');

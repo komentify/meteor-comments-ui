@@ -4,6 +4,7 @@
 
 Meteor.methods({
   'removeGeneratedDocs': function (id) {
+    check(id, String);
     Comments._collection.remove({ userId: id });
   }
 });
@@ -27,6 +28,7 @@ if (Meteor.isClient) {
 
   Meteor.methods({
     'getDoc' : function (referenceId) {
+      check(referenceId, String);
       return Comments._collection.findOne({ referenceId: referenceId });
     }
   });
@@ -39,6 +41,22 @@ if (Meteor.isClient) {
 /**
  * Run tests
  */
+
+Tinytest.add('Comments - config', function (test) {
+  const defaultConfig = Comments.config();
+  test.isFalse(defaultConfig.anonymous);
+
+  test.isTrue(defaultConfig.replies);
+  test.equal(defaultConfig.anonymousSalt, 'changeMe');
+  test.equal(defaultConfig.publishUserFields, { profile: 1, emails: 1, username: 1 });
+
+  Comments.config({
+    something: 'wow'
+  });
+
+  const newConfig = Comments.config();
+  test.equal(newConfig.something, 'wow');
+});
 
 if (Meteor.isClient) {
   Tinytest.add('Comments - add', function (test) {

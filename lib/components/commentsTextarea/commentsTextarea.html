@@ -1,0 +1,70 @@
+<template name="commentsTextarea">
+  {{#if templateIs 'semantic-ui' }}
+    <form class="ui reply form {{#if reply}}reply-form{{else}}comment-form{{/if}}">
+      <div class="field">
+                  <textarea
+                          placeholder="{{ take key='placeholder-textarea' default='Join the discussion'}}"
+                          class="{{#if reply}}create-reply{{else}}create-comment{{/if}}"></textarea>
+      </div>
+      {{#if showAnonymousInput}}
+        <div class="two fields">
+          <div class="field">
+            <input required type="text" class="ui input anon-username" value="{{anonymousData.username}}" placeholder="Your name" />
+          </div>
+          <div class="field">
+            <input required type="email" class="ui input anon-email" value="{{anonymousData.email}}" placeholder="Your email" />
+          </div>
+        </div>
+      {{/if}}
+      <button type="submit" class="ui blue labeled submit icon button">
+        <i class="icon edit"></i> {{ take key=addButtonKey default=defaultAddButtonText }}
+      </button>
+    </form>
+  {{/if}}
+
+  {{#if templateIs 'bootstrap' }}
+    <form class="{{#if reply}}reply-form{{else}}comment-form{{/if}}" role="form" action="">
+      <div class="form-group">
+                  <textarea
+                          placeholder="{{ take key='placeholder-textarea' default='Join the discussion'}}"
+                          class="form-control {{#if reply}}create-reply{{else}}create-comment{{/if}}" rows="3"></textarea>
+      </div>
+      {{#if showAnonymousInput}}
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-6">
+              <input required type="text" class="form-control anon-username" value="{{anonymousData.username}}" placeholder="Your name" />
+            </div>
+            <div class="col-md-6">
+              <input required type="email" class="form-control anon-email" value="{{anonymousData.email}}" placeholder="Your email" />
+            </div>
+          </div>
+        </div>
+      {{/if}}
+      <button type="submit" class="btn btn-primary">{{ take key=addButtonKey default=defaultAddButtonText }}</button>
+    </form>
+  {{/if}}
+
+  {{#if templateIs 'ionic' }}
+    <form class="{{#if reply}}reply-form{{else}}comment-form{{/if}}" role="form" action="">
+      <div class="list list-inset">
+        <label class="item item-input">
+                      <textarea
+                              placeholder="{{ take key='placeholder-textarea' default='Join the discussion'}}"
+                              class="form-control {{#if reply}}create-reply{{else}}create-comment{{/if}}" rows="3"></textarea>
+        </label>
+        {{#if showAnonymousInput}}
+          <label class="item item-input">
+            <input required type="text" class="form-control anon-username" value="{{anonymousData.username}}" placeholder="Your name" />
+          </label>
+          <label class="item item-input">
+            <input required type="email" class="form-control anon-email" value="{{anonymousData.email}}" placeholder="Your email" />
+          </label>
+        {{/if}}
+      </div>
+      <div class="padding">
+        <button type="submit" class="button button-block button-positive">{{ take key=addButtonKey default=defaultAddButtonText }}</button>
+      </div>
+    </form>
+  {{/if}}
+</template>

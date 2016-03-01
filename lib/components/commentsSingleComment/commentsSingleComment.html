@@ -1,0 +1,190 @@
+<template name="commentsSingleComment">
+  {{#if templateIs 'semantic-ui' }}
+    <div data-id="{{_id}}" class="comment">
+      <a class="avatar">
+        <img alt="Avatar of {{user.displayName}}" src="{{avatarUrl}}" />
+      </a>
+      <div class="content">
+        <a class="author">{{user.displayName}}</a>
+        <div class="metadata">
+          <span class="date">{{createdAgo}}</span>
+        </div>
+        <div class="text comment-content" data-id="{{commentId}}">
+          {{#if uiConfigGet 'markdown'}}
+            <div class="text-span">{{#markdown}}{{content}}{{/markdown}}</div>
+          {{else}}
+            <div class="text-span">{{content}}</div>
+          {{/if}}
+        </div>
+        {{#if media.content}}
+        <div class="content-media">
+          {{{mediaContent}}}
+        </div>
+        {{/if}}
+        <div class="actions">
+          <a class="rating unstyled-link like-action {{#if hasLiked}}active{{/if}}">
+            {{likesCount}}
+            <i class="angle up link icon"></i>
+          </a>
+
+          {{#if configGet 'replies' }}
+            <a class="reply-action">{{ take key='reply' default='Reply' }}</a>
+          {{/if}}
+          {{#if isOwnComment}}
+            {{#if isEditable}}
+              <a class="save-action">{{ take key='save' default='Save' }}</a>
+            {{else}}
+              <a class="edit-action">{{ take key='edit' default='Edit' }}</a>
+            {{/if}}
+            <a class="remove-action">{{ take key='remove' default='Remove' }}</a>
+          {{/if}}
+        </div>
+        <div class="create-reply">
+          {{#if addReply}}
+            {{> textarea reply=true scope=this }}
+          {{/if}}
+        </div>
+
+        {{#if reply}}
+        <div class="comments reply-wrapper">
+          {{#each reply}}
+            {{> commentsSingleComment }}
+          {{/each}}
+        </div>
+        {{/if}}
+      </div>
+    </div>
+  {{/if}}
+
+  {{#if templateIs 'bootstrap' }}
+    <div class="media">
+      <div class="media-left">
+        <img alt="Avatar of {{user.displayName}}" class="img-thumbnail img-avatar" src="{{avatarUrl}}" />
+      </div>
+      <div class="media-body comment">
+        <h4 class="media-heading">{{user.displayName}} <small>{{createdAgo}}</small></h4>
+        <div class="content">
+          <p class="comment-content" data-id="{{commentId}}">
+            {{#if uiConfigGet 'markdown'}}
+              <div class="text-span">{{#markdown}}{{content}}{{/markdown}}</div>
+            {{else}}
+              <div class="text-span">{{content}}</div>
+            {{/if}}
+          </p>
+
+          <div class="actions btn-group btn-group-xs">
+            <div class="btn {{#if hasLiked}}btn-primary{{else}}btn-default{{/if}} like-action" aria-label="Left Align">
+              <small>{{likesCount}}</small>
+              <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+            </div>
+
+            {{#if configGet 'replies' }}
+              <div class="btn btn-default reply-action" aria-label="Left Align">
+                {{ take key='reply' default='Reply' }}
+              </div>
+            {{/if}}
+
+            {{#if isOwnComment}}
+              {{#if isEditable}}
+                <div class="btn btn-default save-action" aria-label="Left Align">
+                  {{ take key='save' default='Save' }}
+                </div>
+              {{else}}
+                <div class="btn btn-default edit-action" aria-label="Left Align">
+                  {{ take key='edit' default='Edit' }}
+                </div>
+              {{/if}}
+              <div class="btn btn-danger remove-action" aria-label="Left Align">
+                {{ take key='remove' default='Remove' }}
+              </div>
+            {{/if}}
+          </div>
+        </div>
+
+        {{#if addReply}}
+          <div class="create-reply">
+            {{> textarea reply=true scope=this }}
+          </div>
+        {{/if}}
+
+        {{#if reply}}
+          {{#each reply}}
+            {{> commentsSingleComment }}
+          {{/each}}
+        {{/if}}
+      </div>
+    </div>
+  {{/if}}
+
+  {{#if templateIs 'ionic' }}
+    <div class="list card">
+      <div class="item item-avatar">
+        <img alt="Avatar of {{user.displayName}}" src='{{avatarUrl}}' />
+        <p><small>{{createdAgo}}</small></p>
+        <p><strong>{{user.displayName}}</strong></p>
+      </div>
+
+      <div class="item item-body comment">
+        <p class="comment-content" data-id="{{commentId}}">
+          {{#if uiConfigGet 'markdown'}}
+            <div class="text-span">{{#markdown}}{{content}}{{/markdown}}</div>
+          {{else}}
+            <div class="text-span">{{content}}</div>
+          {{/if}}
+        </p>
+
+        <div class="actions">
+          <div class="button-bar">
+            <a class="button button-clear {{#if hasLiked}}button-positive{{/if}} icon-left ion-thumbsup like-action">
+              {{likesCount}}
+            </a>
+
+            {{#if configGet 'replies'}}
+              <div class="button button-clear ion-reply reply-action">
+                {{ take key='reply' }}
+              </div>
+            {{/if}}
+
+            {{#if isOwnComment}}
+              {{#if isEditable}}
+                <div class="button button-clear ion-archive save-action">
+                  {{ take key='save' }}
+                </div>
+              {{else}}
+                <div class="button button-clear ion-edit edit-action">
+                  {{ take key='edit' }}
+                </div>
+              {{/if}}
+              <div class="button button-clear button-assertive ion-trash-a remove-action">
+                {{ take key='remove' }}
+              </div>
+            {{else}}
+              <a class="button button-clear"></a>
+              <a class="button button-clear"></a>
+            {{/if}}
+          </div>
+        </div>
+
+      </div>
+    </div>
+    {{#if addReply}}
+    <div class="padding-left">
+      <div class="card">
+        <div class="item">
+          <div class="create-reply">
+            {{> textarea reply=true scope=this }}
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/if}}
+
+    {{#if reply}}
+    <div class="padding-left">
+      {{#each reply}}
+        {{> commentsSingleComment }}
+      {{/each}}
+    </div>
+    {{/if}}
+  {{/if}}
+</template>

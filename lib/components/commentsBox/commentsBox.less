@@ -1,12 +1,16 @@
 .comments-box {
     max-width: 40em;
     padding: 1em;
-    
+
     @navy: #001F3F;
 
     .comments {
         padding-top: 1em;
         transition: 1s background-color;
+
+        .text-span {
+            white-space: pre-wrap;
+        }
     }
 
     .unstyled-link {
@@ -32,23 +36,23 @@
     div[contenteditable=true] {
         background-color: @navy;
         border-radius: 0.4em;
-        color: white;
+        color: white !important;
         opacity: 0.8;
     }
-    
+
     .padded {
         padding: 0.5em;
     }
-    
-    .content-image {
+
+    .content-media {
         max-width: 100%;
         max-height: 300px;
         margin: 0.5em 0;
         overflow: hidden;
 
-        img { max-width: 100%; }
+        > * { max-width: 100%; }
     }
-    
+
     // semantic ui
     .ui.comments > .comment .comments {
         margin-left: -3em;
@@ -57,5 +61,10 @@
     // bootstrap 3
     .actions .label {
         margin: 0 0.5em;
+    }
+
+    .img-avatar {
+        min-width: 50px;
+        min-height: 50px;
     }
 }

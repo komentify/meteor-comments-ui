@@ -1,0 +1,73 @@
+<template name="commentsBox">
+  {{! We have not found any good way to include templates with the same context
+  even when using Template.dynamic }}
+
+  {{#if Template.subscriptionsReady}}
+    {{#if customBoxTemplate }}
+      {{> customBoxTemplate }}
+    {{else}}
+    <div class="comments-box">
+      {{#if templateIs 'bootstrap' }}
+        <h3>{{commentsBoxTitle}}</h3>
+
+        {{#if sessionGet 'loginAction'}}
+          <div class="alert alert-warning" role="alert">You need to login to {{sessionGet 'loginAction'}}</div>
+        {{/if}}
+
+        {{> textarea }}
+
+        <div class="media-list comments">
+          {{#each comment}}
+            {{> commentsSingleComment}}
+          {{/each}}
+        </div>
+
+        {{#if hasMoreComments}}
+          <button type="button" class="btn btn-success btn-lg btn-block loadmore-action">{{ take key='load-more' default='Load more comments' }}</button>
+        {{/if}}
+      {{/if}}
+
+      {{#if templateIs 'semantic-ui' }}
+        <div class="ui comments">
+          <h3 class="ui header">{{commentsBoxTitle}}</h3>
+          {{#if sessionGet 'loginAction'}}
+            <div class="ui warning message">You need to login to {{sessionGet 'loginAction'}}</div>
+          {{/if}}
+
+          {{> textarea }}
+
+          {{#each comment}}
+            {{> commentsSingleComment }}
+          {{/each}}
+
+          {{#if hasMoreComments}}
+            <div class="ui fluid green loadmore-action button">{{ take key='load-more' default='Load more comments' }}</div>
+          {{/if}}
+        </div>
+      {{/if}}
+
+      {{#if templateIs 'ionic' }}
+        <h3>{{commentsBoxTitle}}</h3>
+
+        {{#if sessionGet 'loginAction'}}
+          <div class="bar bar-header bar-assertive">You need to login to {{sessionGet 'loginAction'}}</div>
+        {{/if}}
+
+        {{> textarea }}
+
+        {{#each comment}}
+          {{> commentsSingleComment}}
+        {{/each}}
+
+        {{#if hasMoreComments}}
+          <button type="button" class="button button-block button-positive loadmore-action">{{ take key='load-more' default='Load more comments' }}</button>
+        {{/if}}
+      {{/if}}
+    </div>
+    {{/if}}
+  {{else}}
+    {{#if customLoadingTemplate }}
+      {{> customLoadingTemplate }}
+    {{/if}}
+  {{/if}}
+</template>
