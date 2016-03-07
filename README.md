@@ -128,6 +128,15 @@ Comments.changeSchema(function (currentSchema) {
 });
 ```
 
+To insert the value in the new comments collection, you need to use a beforeInsert hook to return an object containing the new values.
+
+```javascript
+Comments.config
+  beforeInsert: (e) ->
+    t = e.target.fname.value
+    { metaInfo: t }
+```
+
 ### Text Strings
 
 You might see that there is a lot of predefined texts that are shown in the commentsBox component. You can change those by calling a __setContent__
