@@ -1,7 +1,7 @@
 Package.describe({
   name: 'arkham:comments-ui',
   summary: 'Simple templates for disqus-like comment functionality',
-  version: '1.0.0',
+  version: '1.0.1',
   git: 'https://github.com/ARKHAM-Enterprises/meteor-comments-ui.git'
 });
 
@@ -30,7 +30,7 @@ Package.onUse(function(api) {
   // Atmosphere Package Dependencies
   api.use([
     'aldeed:collection2@2.5.0', 'aldeed:simple-schema@1.3.3', 'dburles:collection-helpers@1.0.3',
-    'momentjs:moment@2.10.6', 'rzymek:moment-locales@2.9.0', 'utilities:avatar@0.9.1', 'reywood:publish-composite@1.4.2',
+    'momentjs:moment@2.10.6', 'utilities:avatar@0.9.1', 'reywood:publish-composite@1.4.2',
     'aldeed:template-extension@3.4.3'
   ]);
 
