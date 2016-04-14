@@ -30,6 +30,8 @@ Comments.getOne('commentsDocumentId');
 Comments.getAll();
 ```
 
+See the source code for the methods to manipulate comment data.
+
 ## Customization
 
 ### Templates
@@ -75,6 +77,20 @@ Comments.config({
 ```
 
 The anonymous user gets a random user id and salt assigned when doing a user related action (liking, commentig and so on). This salt is used as an authentication for these actions and is a random string based on the configured `anonymousSalt` and user data.
+
+### Rating comments
+
+It is possible to change between rating types, by default it's likes:
+
+* **likes**: Simple upvotes
+* **Stars**: Stars, based on [barbatus:star-rating](https://atmospherejs.com/barbatus/stars-rating)
+
+```javascript
+// On Client and Server
+Comments.config({
+  rating: 'stars' // or null if no rating method should be used  
+});
+```
 
 ### Published data
 
@@ -153,11 +169,21 @@ The configurable values are:
 * __save__, __edit__  and __remove__ Action texts
 * __load-more__ Load more button text
 
-### Event hooks
+## Event hooks
 
-You can hook into the collection operations by using [matb33:collection-hooks](https://atmospherejs.com/matb33/collection-hooks). You can get access to the collection by calling `Comments.getCollection()`.
+You can hook into various events using `onEvent`. This allows you to
+add notifications when someone replied, liked, edited or added a comment / reply.
 
-### Configurable values
+```javascript
+// On Server or Client (preferably on Server)
+Comments.config({
+  onEvent: (name, action, payload) => {
+    // e.g send a mail
+  }
+});
+```
+
+## Configurable values
 
 You can configure following values that change the UI functionality.
 
@@ -177,6 +203,7 @@ There is also a general comments config that changes functionality on more than 
 Comments.config({
   replies: true,
   anonymous: false,
+  rating: 'likes',
   anonymousSalt: 'changeMe',
   mediaAnalyzers: [Comments.analyzers.image],
   publishUserFields: { profile: 1, emails: 1, username: 1 }

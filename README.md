@@ -10,7 +10,9 @@ If you want to see how it looks like you can check out the [screenshot](https://
 </div>
 ```
 
-```documentId``` could be the id of a blog post, news article or a custom defined string that stands for your guestbook. See [GUIDE.md]() for more information.
+```documentId``` could be the id of a blog post, news article or a custom defined string that stands for your guestbook.
+
+See [GUIDE.md]() for more information.
 
 ## How to install
 
