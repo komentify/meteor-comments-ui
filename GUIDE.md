@@ -13,6 +13,23 @@ Comments.ui.config({
 
 ```semantic-ui``` is the default, because of the semantic markup that is written with it.
 
+## Javascript API
+
+There is a simple Javascript API to manipulate and get data about comments.
+
+```javascript
+// On Client or Server
+
+// Get comments for an id
+Comments.get('someId');
+// Get count of comments for an id
+Comments.getCount('someId', (err, count) => console.log(count));
+// Get one comment by it's document _id
+Comments.getOne('commentsDocumentId');
+// Get all comments (on client only get's the ones subscribed to)
+Comments.getAll();
+```
+
 ## Customization
 
 ### Templates
