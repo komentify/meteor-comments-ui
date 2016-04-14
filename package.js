@@ -32,7 +32,7 @@ Package.onUse(function(api) {
   api.use([
     'aldeed:collection2@2.5.0', 'aldeed:simple-schema@1.3.3', 'dburles:collection-helpers@1.0.3',
     'momentjs:moment@2.10.6', 'utilities:avatar@0.9.1', 'reywood:publish-composite@1.4.2',
-    'aldeed:template-extension@3.4.3'
+    'aldeed:template-extension@3.4.3', 'barbatus:stars-rating@1.0.7'
   ]);
 
   // Package specific globals and files

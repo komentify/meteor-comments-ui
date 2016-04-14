@@ -67,4 +67,13 @@
         min-width: 50px;
         min-height: 50px;
     }
+
+    .stars-rating {
+        opacity: 0.7;
+        transition: 0.1s opacity;
+
+        &.own-rating, &:hover {
+            opacity: 1;
+        }
+    }
 }

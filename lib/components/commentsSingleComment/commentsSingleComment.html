@@ -22,10 +22,20 @@
         </div>
         {{/if}}
         <div class="actions">
-          <a class="rating unstyled-link like-action {{#if hasLiked}}active{{/if}}">
-            {{likesCount}}
-            <i class="angle up link icon"></i>
-          </a>
+          {{#if isRating 'likes' }}
+            <a class="rating unstyled-link like-action {{#if hasLiked}}active{{/if}}">
+              {{likesCount}}
+              <i class="angle up link icon"></i>
+            </a>
+          {{/if}}
+
+          {{#if isRating 'stars' }}
+            <a class="rating unstyled-link stars-action">
+              {{#let ratingCount=rating.rating ratingClass=(getRatingClass rating.type) }}
+                {{> starsRating rating=ratingCount size=10 class=ratingClass mutable=canRate }}
+              {{/let}}
+            </a>
+          {{/if}}
 
           {{#if configGet 'replies' }}
             <a class="reply-action">{{ take key='reply' default='Reply' }}</a>
