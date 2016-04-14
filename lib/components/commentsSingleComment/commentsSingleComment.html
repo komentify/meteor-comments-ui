@@ -83,10 +83,20 @@
           </p>
 
           <div class="actions btn-group btn-group-xs">
-            <div class="btn {{#if hasLiked}}btn-primary{{else}}btn-default{{/if}} like-action" aria-label="Left Align">
-              <small>{{likesCount}}</small>
-              <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-            </div>
+            {{#if isRating 'likes'}}
+              <div class="btn {{#if hasLiked}}btn-primary{{else}}btn-default{{/if}} like-action" aria-label="Left Align">
+                <small>{{likesCount}}</small>
+                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+              </div>
+            {{/if}}
+
+            {{#if isRating 'stars'}}
+              <div class="btn btn-default unstyled-link stars-action">
+                {{#let ratingCount=rating.rating ratingClass=(getRatingClass rating.type) }}
+                  {{> starsRating rating=ratingCount size=10 class=ratingClass mutable=canRate }}
+                {{/let}}
+              </div>
+            {{/if}}
 
             {{#if configGet 'replies' }}
               <div class="btn btn-default reply-action" aria-label="Left Align">
@@ -145,9 +155,19 @@
 
         <div class="actions">
           <div class="button-bar">
-            <a class="button button-clear {{#if hasLiked}}button-positive{{/if}} icon-left ion-thumbsup like-action">
-              {{likesCount}}
-            </a>
+            {{#if isRating 'likes'}}
+              <a class="button button-clear {{#if hasLiked}}button-positive{{/if}} icon-left ion-thumbsup like-action">
+                {{likesCount}}
+              </a>
+            {{/if}}
+
+            {{#if isRating 'stars'}}
+              <div class="stars-action">
+                {{#let ratingCount=rating.rating ratingClass=(getRatingClass rating.type) }}
+                  {{> starsRating rating=ratingCount size=10 class=ratingClass mutable=canRate }}
+                {{/let}}
+              </div>
+            {{/if}}
 
             {{#if configGet 'replies'}}
               <div class="button button-clear ion-reply reply-action">
