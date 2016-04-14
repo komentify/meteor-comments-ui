@@ -8,7 +8,11 @@
     {{else}}
     <div class="comments-box">
       {{#if templateIs 'bootstrap' }}
-        <h3>{{commentsBoxTitle}}</h3>
+        {{#if customHeaderTemplate}}
+          {{> customHeaderTemplate}}
+        {{else}}
+          <h3>{{commentsBoxTitle}}</h3>
+        {{/if}}
 
         {{#if sessionGet 'loginAction'}}
           <div class="alert alert-warning" role="alert">You need to login to {{sessionGet 'loginAction'}}</div>
@@ -29,7 +33,12 @@
 
       {{#if templateIs 'semantic-ui' }}
         <div class="ui comments">
-          <h3 class="ui header">{{commentsBoxTitle}}</h3>
+          {{#if customHeaderTemplate}}
+            {{> customHeaderTemplate}}
+          {{else}}
+            <h3 class="ui header">{{commentsBoxTitle}}</h3>
+          {{/if}}
+
           {{#if sessionGet 'loginAction'}}
             <div class="ui warning message">You need to login to {{sessionGet 'loginAction'}}</div>
           {{/if}}
@@ -47,7 +56,11 @@
       {{/if}}
 
       {{#if templateIs 'ionic' }}
-        <h3>{{commentsBoxTitle}}</h3>
+        {{#if customHeaderTemplate}}
+          {{> customHeaderTemplate}}
+        {{else}}
+          <h3>{{commentsBoxTitle}}</h3>
+        {{/if}}
 
         {{#if sessionGet 'loginAction'}}
           <div class="bar bar-header bar-assertive">You need to login to {{sessionGet 'loginAction'}}</div>

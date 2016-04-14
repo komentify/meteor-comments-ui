@@ -37,6 +37,7 @@ See the source code for the methods to manipulate comment data.
 ### Templates
 
 You can customize the output of the commentsBox by adding custom templates as parameter.
+Be sure to add them as **strings** instead of template instances.
 
 ```html
 <template name="myComments">
@@ -55,10 +56,13 @@ You can customize the output of the commentsBox by adding custom templates as pa
 
 <template name="post">
     {{> commentsBox 
-    	id=post._id 
-    	boxTemplate="myComments"
-    	loadingTemplate="myLoading"
-	 }}
+        id=post._id 
+        boxTemplate="myComments"
+        loadingTemplate="myLoading"
+        headerTemplate="..."
+        singleCommentTemplate="..."
+        textareaTemplate="..."
+    }}
 </template>
 ```
 

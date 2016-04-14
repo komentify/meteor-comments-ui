@@ -1,4 +1,7 @@
 <template name="commentsSingleComment">
+  {{#if customSingleCommentTemplate}}
+    {{> customSingleCommentTemplate}}
+  {{else}}
   {{#if templateIs 'semantic-ui' }}
     <div data-id="{{_id}}" class="comment">
       <a class="avatar">
@@ -216,5 +219,6 @@
       {{/each}}
     </div>
     {{/if}}
+  {{/if}}
   {{/if}}
 </template>
