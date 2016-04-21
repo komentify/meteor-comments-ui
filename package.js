@@ -53,6 +53,8 @@ Package.onUse(function(api) {
     'lib/components/commentsBox/commentsBox.less',
     'lib/components/commentsSingleComment/commentsSingleComment.html',
     'lib/components/commentsTextarea/commentsTextarea.html',
+    'lib/components/commentsSubheader/commentsSubheader.html',
+    'lib/components/commentsList/commentsList.html',
     'lib/api.js'
   ]);
 
@@ -60,7 +62,9 @@ Package.onUse(function(api) {
     'lib/components/helpers.js',
     'lib/components/commentsBox/commentsBox.js',
     'lib/components/commentsSingleComment/commentsSingleComment.js',
-    'lib/components/commentsTextarea/commentsTextarea.js'
+    'lib/components/commentsTextarea/commentsTextarea.js',
+    'lib/components/commentsSubheader/commentsSubheader.js',
+    'lib/components/commentsList/commentsList.js'
   ], 'client');
 
   api.addFiles([

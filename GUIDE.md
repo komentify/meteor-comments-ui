@@ -60,7 +60,9 @@ Be sure to add them as **strings** instead of template instances.
         boxTemplate="myComments"
         loadingTemplate="myLoading"
         headerTemplate="..."
+        subheaderTemplate="..."
         singleCommentTemplate="..."
+        commentListTemplate="..."
         textareaTemplate="..."
     }}
 </template>
