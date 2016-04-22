@@ -7,7 +7,7 @@ Package.describe({
 
 Package.onUse(function(api) {
   // Meteor Version
-  api.versionsFrom('METEOR@1.2.1');
+  api.versionsFrom('METEOR@1.3.2.2');
 
   // Meteor Core Dependencies
   api.use(['accounts-password@1.0.1'], { weak: true });

@@ -85,6 +85,12 @@
             {{/if}}
           </p>
 
+          {{#if media.content}}
+            <div class="content-media">
+              {{{mediaContent}}}
+            </div>
+          {{/if}}
+
           <div class="actions btn-group btn-group-xs">
             {{#if isRating 'likes'}}
               <div class="btn {{#if hasLiked}}btn-primary{{else}}btn-default{{/if}} like-action" aria-label="Left Align">
@@ -155,6 +161,12 @@
             <div class="text-span">{{content}}</div>
           {{/if}}
         </p>
+
+        {{#if media.content}}
+          <div class="content-media">
+            {{{mediaContent}}}
+          </div>
+        {{/if}}
 
         <div class="actions">
           <div class="button-bar">
