@@ -24,7 +24,8 @@ Package.onUse(function(api) {
     'check',
     'random',
     'markdown',
-    'reactive-dict'
+    'reactive-dict',
+    'session'
   ]);
 
   // Atmosphere Package Dependencies
