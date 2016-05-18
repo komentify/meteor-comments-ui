@@ -1,4 +1,7 @@
 <template name="commentsTextarea">
+  {{#if customTextareaTemplate}}
+    {{> customTextareaTemplate}}
+  {{else}}
   {{#if templateIs 'semantic-ui' }}
     <form class="ui reply form {{#if reply}}reply-form{{else}}comment-form{{/if}}">
       <div class="field">
@@ -66,5 +69,6 @@
         <button type="submit" class="button button-block button-positive">{{ take key=addButtonKey default=defaultAddButtonText }}</button>
       </div>
     </form>
+  {{/if}}
   {{/if}}
 </template>

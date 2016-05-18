@@ -1,0 +1,43 @@
+<template name="commentsList">
+  {{#if Template.subscriptionsReady}}
+    {{#if customListTemplate}}
+      {{> customListTemplate}}
+    {{else}}
+      {{#if templateIs 'semantic-ui'}}
+        {{#each comment}}
+          {{> commentsSingleComment }}
+        {{/each}}
+
+        {{#if hasMoreComments}}
+          <div class="ui fluid green loadmore-action button">{{ take key='load-more' default='Load more comments' }}</div>
+        {{/if}}
+      {{/if}}
+
+      {{#if templateIs 'bootstrap'}}
+        <div class="media-list comments">
+          {{#each comment}}
+            {{> commentsSingleComment}}
+          {{/each}}
+        </div>
+
+        {{#if hasMoreComments}}
+          <button type="button" class="btn btn-success btn-lg btn-block loadmore-action">{{ take key='load-more' default='Load more comments' }}</button>
+        {{/if}}
+      {{/if}}
+
+      {{#if templateIs 'ionic'}}
+        {{#each comment}}
+          {{> commentsSingleComment}}
+        {{/each}}
+
+        {{#if hasMoreComments}}
+          <button type="button" class="button button-block button-positive loadmore-action">{{ take key='load-more' default='Load more comments' }}</button>
+        {{/if}}
+      {{/if}}
+    {{/if}}
+  {{else}}
+    {{#if customLoadingTemplate }}
+      {{> customLoadingTemplate }}
+    {{/if}}
+  {{/if}}
+</template>

@@ -1,13 +1,13 @@
 Package.describe({
   name: 'arkham:comments-ui',
   summary: 'Simple templates for disqus-like comment functionality',
-  version: '1.0.3',
+  version: '1.1.0',
   git: 'https://github.com/ARKHAM-Enterprises/meteor-comments-ui.git'
 });
 
 Package.onUse(function(api) {
   // Meteor Version
-  api.versionsFrom('METEOR@1.2.1');
+  api.versionsFrom('METEOR@1.3.2.2');
 
   // Meteor Core Dependencies
   api.use(['accounts-password@1.0.1'], { weak: true });
@@ -32,7 +32,7 @@ Package.onUse(function(api) {
   api.use([
     'aldeed:collection2@2.5.0', 'aldeed:simple-schema@1.3.3', 'dburles:collection-helpers@1.0.3',
     'momentjs:moment@2.10.6', 'utilities:avatar@0.9.1', 'reywood:publish-composite@1.4.2',
-    'aldeed:template-extension@3.4.3'
+    'aldeed:template-extension@4.0.0', 'barbatus:stars-rating@1.0.7'
   ]);
 
   // Package specific globals and files
@@ -53,6 +53,8 @@ Package.onUse(function(api) {
     'lib/components/commentsBox/commentsBox.less',
     'lib/components/commentsSingleComment/commentsSingleComment.html',
     'lib/components/commentsTextarea/commentsTextarea.html',
+    'lib/components/commentsSubheader/commentsSubheader.html',
+    'lib/components/commentsList/commentsList.html',
     'lib/api.js'
   ]);
 
@@ -60,7 +62,9 @@ Package.onUse(function(api) {
     'lib/components/helpers.js',
     'lib/components/commentsBox/commentsBox.js',
     'lib/components/commentsSingleComment/commentsSingleComment.js',
-    'lib/components/commentsTextarea/commentsTextarea.js'
+    'lib/components/commentsTextarea/commentsTextarea.js',
+    'lib/components/commentsSubheader/commentsSubheader.js',
+    'lib/components/commentsList/commentsList.js'
   ], 'client');
 
   api.addFiles([

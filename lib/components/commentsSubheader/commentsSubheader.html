@@ -1,0 +1,20 @@
+<template name="commentsSubheader">
+  {{#if customSubheaderTemplate}}
+    {{> customSubheaderTemplate}}
+  {{else}}
+  {{#if templateIs 'semantic-ui' }}
+    <div class="sorting">
+      Sort by
+      <select class="ui sorting-dropdown dropdown">
+        {{#each sortingOption}}
+          {{#if currentSortOption}}
+            <option selected value="{{value}}">{{label}}</option>
+          {{else}}
+            <option value="{{value}}">{{label}}</option>
+          {{/if}}
+        {{/each}}
+      </select>
+    </div>
+  {{/if}}
+  {{/if}}
+</template>

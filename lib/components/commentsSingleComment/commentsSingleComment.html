@@ -1,4 +1,7 @@
 <template name="commentsSingleComment">
+  {{#if customSingleCommentTemplate}}
+    {{> customSingleCommentTemplate}}
+  {{else}}
   {{#if templateIs 'semantic-ui' }}
     <div data-id="{{_id}}" class="comment">
       <a class="avatar">
@@ -17,15 +20,25 @@
           {{/if}}
         </div>
         {{#if media.content}}
-        <div class="content-media">
-          {{{mediaContent}}}
-        </div>
+          <div class="content-media">
+            {{{mediaContent}}}
+          </div>
         {{/if}}
         <div class="actions">
-          <a class="rating unstyled-link like-action {{#if hasLiked}}active{{/if}}">
-            {{likesCount}}
-            <i class="angle up link icon"></i>
-          </a>
+          {{#if isRating 'likes' }}
+            <a class="rating unstyled-link like-action {{#if hasLiked}}active{{/if}}">
+              {{likesCount}}
+              <i class="angle up link icon"></i>
+            </a>
+          {{/if}}
+
+          {{#if isRating 'stars' }}
+            <a class="rating unstyled-link stars-action">
+              {{#let ratingCount=rating.rating ratingClass=(getRatingClass rating.type) }}
+                {{> starsRating rating=ratingCount size=10 class=ratingClass mutable=canRate }}
+              {{/let}}
+            </a>
+          {{/if}}
 
           {{#if configGet 'replies' }}
             <a class="reply-action">{{ take key='reply' default='Reply' }}</a>
@@ -72,11 +85,27 @@
             {{/if}}
           </p>
 
-          <div class="actions btn-group btn-group-xs">
-            <div class="btn {{#if hasLiked}}btn-primary{{else}}btn-default{{/if}} like-action" aria-label="Left Align">
-              <small>{{likesCount}}</small>
-              <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+          {{#if media.content}}
+            <div class="content-media">
+              {{{mediaContent}}}
             </div>
+          {{/if}}
+
+          <div class="actions btn-group btn-group-xs">
+            {{#if isRating 'likes'}}
+              <div class="btn {{#if hasLiked}}btn-primary{{else}}btn-default{{/if}} like-action" aria-label="Left Align">
+                <small>{{likesCount}}</small>
+                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+              </div>
+            {{/if}}
+
+            {{#if isRating 'stars'}}
+              <div class="btn btn-default unstyled-link stars-action">
+                {{#let ratingCount=rating.rating ratingClass=(getRatingClass rating.type) }}
+                  {{> starsRating rating=ratingCount size=10 class=ratingClass mutable=canRate }}
+                {{/let}}
+              </div>
+            {{/if}}
 
             {{#if configGet 'replies' }}
               <div class="btn btn-default reply-action" aria-label="Left Align">
@@ -133,11 +162,27 @@
           {{/if}}
         </p>
 
+        {{#if media.content}}
+          <div class="content-media">
+            {{{mediaContent}}}
+          </div>
+        {{/if}}
+
         <div class="actions">
           <div class="button-bar">
-            <a class="button button-clear {{#if hasLiked}}button-positive{{/if}} icon-left ion-thumbsup like-action">
-              {{likesCount}}
-            </a>
+            {{#if isRating 'likes'}}
+              <a class="button button-clear {{#if hasLiked}}button-positive{{/if}} icon-left ion-thumbsup like-action">
+                {{likesCount}}
+              </a>
+            {{/if}}
+
+            {{#if isRating 'stars'}}
+              <div class="stars-action">
+                {{#let ratingCount=rating.rating ratingClass=(getRatingClass rating.type) }}
+                  {{> starsRating rating=ratingCount size=10 class=ratingClass mutable=canRate }}
+                {{/let}}
+              </div>
+            {{/if}}
 
             {{#if configGet 'replies'}}
               <div class="button button-clear ion-reply reply-action">
@@ -186,5 +231,6 @@
       {{/each}}
     </div>
     {{/if}}
+  {{/if}}
   {{/if}}
 </template>
