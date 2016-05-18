@@ -137,7 +137,7 @@ Comments.config({
 });
 ```
 
-Have a look at the [image analyzer code](#) to see how an implementation might look like.
+Have a look at the [image analyzer code](https://github.com/ARKHAM-Enterprises/meteor-comments-ui/blob/master/lib/services/media-analyzers/image.js) to see how an implementation might look like.
 
 ### Schema
 
