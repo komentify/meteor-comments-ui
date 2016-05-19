@@ -30,7 +30,7 @@ Comments.getOne('commentsDocumentId');
 Comments.getAll();
 ```
 
-See the source code for the methods to manipulate comment data.
+See the [source code](https://github.com/ARKHAM-Enterprises/meteor-comments-ui/blob/master/lib/api.js) for the methods to manipulate comment data.
 
 ## Customization
 
