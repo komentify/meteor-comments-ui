@@ -16,7 +16,7 @@
           {{#if uiConfigGet 'markdown'}}
             <div class="text-span">{{#markdown}}{{content}}{{/markdown}}</div>
           {{else}}
-            <div class="text-span">{{content}}</div>
+            <div class="text-span">{{{enhancedContent}}}</div>
           {{/if}}
         </div>
         {{#if media.content}}
@@ -81,7 +81,7 @@
             {{#if uiConfigGet 'markdown'}}
               <div class="text-span">{{#markdown}}{{content}}{{/markdown}}</div>
             {{else}}
-              <div class="text-span">{{content}}</div>
+              <div class="text-span">{{{enhancedContent}}}</div>
             {{/if}}
           </p>
 
@@ -158,7 +158,7 @@
           {{#if uiConfigGet 'markdown'}}
             <div class="text-span">{{#markdown}}{{content}}{{/markdown}}</div>
           {{else}}
-            <div class="text-span">{{content}}</div>
+            <div class="text-span">{{{enhancedContent}}}</div>
           {{/if}}
         </p>
 

@@ -1,8 +1,12 @@
 Package.describe({
   name: 'arkham:comments-ui',
   summary: 'Simple templates for disqus-like comment functionality',
-  version: '1.1.0',
+  version: '1.1.1',
   git: 'https://github.com/ARKHAM-Enterprises/meteor-comments-ui.git'
+});
+
+Npm.depends({
+  linkifyjs: '2.0.2'
 });
 
 Package.onUse(function(api) {
