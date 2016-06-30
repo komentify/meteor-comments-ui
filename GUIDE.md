@@ -1,4 +1,4 @@
-# Guide 
+# Guide
 
 ## UI Templates
 
@@ -55,8 +55,8 @@ Be sure to add them as **strings** instead of template instances.
 </template>
 
 <template name="post">
-    {{> commentsBox 
-        id=post._id 
+    {{> commentsBox
+        id=post._id
         boxTemplate="myComments"
         loadingTemplate="myLoading"
         headerTemplate="..."
@@ -77,7 +77,7 @@ You can allow anonymous users to comment, configurable like following.
 ```javascript
 // Client and Server
 Comments.config({
-  anonymous: true,
+  allowAnonymous: () => true,
   anonymousSalt: 'myRandomSalt'
 });
 ```
@@ -94,7 +94,7 @@ It is possible to change between rating types, by default it's likes:
 ```javascript
 // On Client and Server
 Comments.config({
-  rating: 'stars' // or null if no rating method should be used  
+  rating: 'stars' // or null if no rating method should be used
 });
 ```
 
@@ -105,7 +105,7 @@ If you do not want to publish certain user data by default you can configure the
 ```javascript
 // Client and Server
 Comments.config({
-  publishUserFields: { 
+  publishUserFields: {
     profile: 1
   },
   generateUsername: function (user) {
@@ -204,11 +204,12 @@ Comments.ui.config({
 ```
 
 There is also a general comments config that changes functionality on more than just the UI.
+The `referenceId` parameter in the `allow` methods is only available on the server.
 
 ```javascript
 Comments.config({
-  replies: true,
-  anonymous: false,
+  allowReplies: ([referenceId]) => true,
+  allowAnonymous: ([referenceId]) => false,
   rating: 'likes',
   anonymousSalt: 'changeMe',
   mediaAnalyzers: [Comments.analyzers.image],

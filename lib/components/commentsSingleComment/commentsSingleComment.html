@@ -40,7 +40,7 @@
             </a>
           {{/if}}
 
-          {{#if configGet 'replies' }}
+          {{#if allowReplies _id }}
             <a class="reply-action">{{ take key='reply' default='Reply' }}</a>
           {{/if}}
           {{#if isOwnComment}}
@@ -107,7 +107,7 @@
               </div>
             {{/if}}
 
-            {{#if configGet 'replies' }}
+            {{#if allowReplies _id }}
               <div class="btn btn-default reply-action" aria-label="Left Align">
                 {{ take key='reply' default='Reply' }}
               </div>
@@ -184,7 +184,7 @@
               </div>
             {{/if}}
 
-            {{#if configGet 'replies'}}
+            {{#if allowReplies _id }}
               <div class="button button-clear ion-reply reply-action">
                 {{ take key='reply' }}
               </div>
