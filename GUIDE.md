@@ -110,15 +110,25 @@ Comments.config({
   },
   generateUsername: function (user) {
      return user.profile.username;
-  },
-  generateAvatar: function (user, isAnonymous) {
-    return user.profile.username;
   }
 });
 ```
 
 If you want to have custom logic that defines the username you can define a `generateUsername` function that returns the username as you want it displayed in the comments box.
-The same holds true for the `generateAvatar` configuration method.
+
+### Custom avatars
+
+You can set custom avatars per user by using the `generateAvatar` function.
+
+```javascript
+// On Client
+Comments.ui.config({
+  generateAvatar: function (user, isAnonymous) {
+    return user.profile.username;
+  },
+  defaultAvatar: '...' // fallback
+});
+```
 
 ### Media
 
