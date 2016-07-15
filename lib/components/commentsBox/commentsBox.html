@@ -16,7 +16,7 @@
         {{> commentsSubheader}}
 
         {{#if sessionGet 'loginAction'}}
-          <div class="alert alert-warning" role="alert">You need to login to {{sessionGet 'loginAction'}}</div>
+          <div class="alert alert-warning" role="alert">{{youNeedToLogin}}</div>
         {{/if}}
 
         {{> textarea}}
@@ -35,7 +35,7 @@
           {{> commentsSubheader}}
 
           {{#if sessionGet 'loginAction'}}
-            <div class="ui warning message">You need to login to {{sessionGet 'loginAction'}}</div>
+            <div class="ui warning message">{{youNeedToLogin}}</div>
           {{/if}}
 
           {{> textarea }}
@@ -54,7 +54,7 @@
       {{> commentsSubheader}}
 
       {{#if sessionGet 'loginAction'}}
-        <div class="bar bar-header bar-assertive">You need to login to {{sessionGet 'loginAction'}}</div>
+        <div class="bar bar-header bar-assertive">{{youNeedToLogin}}</div>
       {{/if}}
 
       {{> textarea}}
