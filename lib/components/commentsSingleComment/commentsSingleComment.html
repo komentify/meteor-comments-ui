@@ -3,7 +3,7 @@
     {{> customSingleCommentTemplate}}
   {{else}}
   {{#if templateIs 'semantic-ui' }}
-    <div data-id="{{_id}}" class="comment">
+    <div data-id="{{_id}}" class="comment {{#if isOwnComment}}own-comment{{/if}}">
       <a class="avatar">
         <img alt="Avatar of {{user.displayName}}" src="{{avatarUrl}}" />
       </a>
@@ -74,7 +74,7 @@
       <div class="media-left">
         <img alt="Avatar of {{user.displayName}}" class="img-thumbnail img-avatar" src="{{avatarUrl}}" />
       </div>
-      <div class="media-body comment">
+      <div class="media-body comment {{#if isOwnComment}}own-comment{{/if}}">
         <h4 class="media-heading">{{user.displayName}} <small>{{createdAgo}}</small></h4>
         <div class="content">
           <p class="comment-content" data-id="{{commentId}}">
@@ -153,7 +153,7 @@
         <p><strong>{{user.displayName}}</strong></p>
       </div>
 
-      <div class="item item-body comment">
+      <div class="item item-body comment {{#if isOwnComment}}own-comment{{/if}}">
         <p class="comment-content" data-id="{{commentId}}">
           {{#if uiConfigGet 'markdown'}}
             <div class="text-span">{{#markdown}}{{content}}{{/markdown}}</div>

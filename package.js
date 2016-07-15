@@ -1,8 +1,8 @@
 Package.describe({
   name: 'arkham:comments-ui',
   summary: 'Simple templates for disqus-like comment functionality',
-  version: '1.1.6',
-  git: 'https://github.com/ARKHAM-Enterprises/meteor-comments-ui.git'
+  version: '1.1.7',
+  git: 'https://github.com/komentify/meteor-comments-ui.git'
 });
 
 Npm.depends({
