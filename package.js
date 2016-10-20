@@ -1,7 +1,7 @@
 Package.describe({
   name: 'arkham:comments-ui',
   summary: 'Simple templates for disqus-like comment functionality',
-  version: '1.1.9',
+  version: '1.2.0',
   git: 'https://github.com/komentify/meteor-comments-ui.git'
 });
 
@@ -11,7 +11,7 @@ Npm.depends({
 
 Package.onUse(function(api) {
   // Meteor Version
-  api.versionsFrom('METEOR@1.3.2.2');
+  api.versionsFrom('METEOR@1.4.1.2');
 
   // Meteor Core Dependencies
   api.use(['accounts-password@1.0.1'], { weak: true });
