@@ -3,12 +3,12 @@
     "linkifyjs": {
       "version": "2.0.2",
       "resolved": "https://registry.npmjs.org/linkifyjs/-/linkifyjs-2.0.2.tgz",
-      "from": "linkifyjs@2.0.2",
+      "from": "https://registry.npmjs.org/linkifyjs/-/linkifyjs-2.0.2.tgz",
       "dependencies": {
         "jquery": {
           "version": "2.2.3",
           "resolved": "https://registry.npmjs.org/jquery/-/jquery-2.2.3.tgz",
-          "from": "jquery@>=1.9.0"
+          "from": "https://registry.npmjs.org/jquery/-/jquery-2.2.3.tgz"
         }
       }
     }

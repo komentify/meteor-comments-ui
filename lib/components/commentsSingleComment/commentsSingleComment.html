@@ -43,7 +43,7 @@
           {{#if allowReplies _id }}
             <a class="reply-action">{{ take key='reply' default='Reply' }}</a>
           {{/if}}
-          {{#if isOwnComment}}
+          {{#if isChangeable}}
             {{#if isEditable}}
               <a class="save-action">{{ take key='save' default='Save' }}</a>
             {{else}}
@@ -113,7 +113,7 @@
               </div>
             {{/if}}
 
-            {{#if isOwnComment}}
+            {{#if isChangeable}}
               {{#if isEditable}}
                 <div class="btn btn-default save-action" aria-label="Left Align">
                   {{ take key='save' default='Save' }}
@@ -190,7 +190,7 @@
               </div>
             {{/if}}
 
-            {{#if isOwnComment}}
+            {{#if isChangeable}}
               {{#if isEditable}}
                 <div class="button button-clear ion-archive save-action">
                   {{ take key='save' }}
