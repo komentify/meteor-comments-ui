@@ -25,10 +25,17 @@
           </div>
         {{/if}}
         <div class="actions">
-          {{#if isRating 'likes' }}
+          {{#if isRating 'likes' 'likes-and-dislikes'}}
             <a class="rating unstyled-link like-action {{#if hasLiked}}active{{/if}}">
               {{likesCount}}
               <i class="angle up link icon"></i>
+            </a>
+          {{/if}}
+
+          {{#if isRating 'likes-and-dislikes'}}
+            <a class="rating unstyled-link dislike-action {{#if hasDisliked}}active{{/if}}">
+              {{dislikesCount}}
+              <i class="angle down link icon"></i>
             </a>
           {{/if}}
 
@@ -92,7 +99,7 @@
           {{/if}}
 
           <div class="actions btn-group btn-group-xs">
-            {{#if isRating 'likes'}}
+            {{#if isRating 'likes' 'likes-and-dislikes'}}
               <div class="btn {{#if hasLiked}}btn-primary{{else}}btn-default{{/if}} like-action" aria-label="Left Align">
                 <small>{{likesCount}}</small>
                 <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
@@ -170,7 +177,7 @@
 
         <div class="actions">
           <div class="button-bar">
-            {{#if isRating 'likes'}}
+            {{#if isRating 'likes' 'likes-and-dislikes'}}
               <a class="button button-clear {{#if hasLiked}}button-positive{{/if}} icon-left ion-thumbsup like-action">
                 {{likesCount}}
               </a>
