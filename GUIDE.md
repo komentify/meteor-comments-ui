@@ -89,6 +89,7 @@ The anonymous user gets a random user id and salt assigned when doing a user rel
 It is possible to change between rating types, by default it's likes:
 
 * **likes**: Simple upvotes
+* **likes-and-dislikes**: Upvotes and downvotes
 * **Stars**: Stars, based on [barbatus:star-rating](https://atmospherejs.com/barbatus/stars-rating)
 
 ```javascript
