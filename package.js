@@ -11,7 +11,7 @@ Npm.depends({
 
 Package.onUse(function(api) {
   // Meteor Version
-  api.versionsFrom('METEOR@1.3.2.2');
+  api.versionsFrom('METEOR@1.4.1.2');
 
   // Meteor Core Dependencies
   api.use(['accounts-password@1.0.1'], { weak: true });
