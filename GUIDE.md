@@ -208,6 +208,9 @@ Comments.ui.config({
 });
 ```
 
+The css class can be used to trigger an onclick action. The `key` property referes to the text string that can be used
+to translate the comment box.
+
 ## Event hooks
 
 You can hook into various events using `onEvent`. This allows you to
@@ -221,9 +224,6 @@ Comments.config({
   }
 });
 ```
-
-The css class can be used to trigger an onclick action. The `key` property referes to the text string that can be used
-to translate the comment box.
 
 ## Configurable values
 
