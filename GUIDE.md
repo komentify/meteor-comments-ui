@@ -204,6 +204,27 @@ Comments.config({
 });
 ```
 
+## Custom comment actions
+
+You can define custom actions that can be used on a comment / reply. An example could be sharing.
+
+```javascript
+Comments.ui.config({
+  commentActions: [
+    {
+      cssClass: 'share-action',
+      text: {
+        key: 'share',
+        defaultText: 'Share'
+      }
+    }
+  ],
+});
+```
+
+The css class can be used to trigger an onclick action. The `key` property referes to the text string that can be used
+to translate the comment box.
+
 ## Configurable values
 
 You can configure following values that change the UI functionality.
@@ -214,7 +235,8 @@ Comments.ui.config({
   loadMoreCount: 10,
   template: 'semantic-ui',
   defaultAvatar:'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png',
-  markdown: false
+  markdown: false,
+  commentActions: [],
 });
 ```
 
