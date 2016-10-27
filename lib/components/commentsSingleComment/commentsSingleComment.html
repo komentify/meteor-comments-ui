@@ -50,6 +50,9 @@
           {{#if allowReplies _id }}
             <a class="reply-action">{{ take key='reply' default='Reply' }}</a>
           {{/if}}
+          {{#each commentAction}}
+            <a class="{{cssClass}}">{{ take key=text.key default=text.defaultText }}</a>
+          {{/each}}
           {{#if isChangeable}}
             {{#if isEditable}}
               <a class="save-action">{{ take key='save' default='Save' }}</a>
