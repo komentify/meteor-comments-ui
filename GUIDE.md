@@ -182,6 +182,25 @@ Comments.ui.setContent({
 });
 ```
 
+
+### Comment actions
+
+You can define custom actions that can be used on a comment / reply. An example could be sharing.
+
+```javascript
+Comments.ui.config({
+  commentActions: [
+    {
+      cssClass: 'share-action',
+      text: {
+        key: 'share',
+        defaultText: 'Share'
+      }
+    }
+  ],
+});
+```
+
 The configurable values are:
 
 * __title__ Title of the box
@@ -201,24 +220,6 @@ Comments.config({
   onEvent: (name, action, payload) => {
     // e.g send a mail
   }
-});
-```
-
-## Custom comment actions
-
-You can define custom actions that can be used on a comment / reply. An example could be sharing.
-
-```javascript
-Comments.ui.config({
-  commentActions: [
-    {
-      cssClass: 'share-action',
-      text: {
-        key: 'share',
-        defaultText: 'Share'
-      }
-    }
-  ],
 });
 ```
 
