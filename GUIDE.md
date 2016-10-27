@@ -182,6 +182,13 @@ Comments.ui.setContent({
 });
 ```
 
+The configurable values are:
+
+* __title__ Title of the box
+* __add-button__ Button text for adding comments
+* __placeholder-textarea__ Placeholder for commenting textarea
+* __save__, __edit__  and __remove__ Action texts
+* __load-more__ Load more button text
 
 ### Comment actions
 
@@ -200,14 +207,6 @@ Comments.ui.config({
   ],
 });
 ```
-
-The configurable values are:
-
-* __title__ Title of the box
-* __add-button__ Button text for adding comments
-* __placeholder-textarea__ Placeholder for commenting textarea
-* __save__, __edit__  and __remove__ Action texts
-* __load-more__ Load more button text
 
 ## Event hooks
 
