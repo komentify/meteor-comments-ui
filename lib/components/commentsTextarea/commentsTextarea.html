@@ -18,6 +18,12 @@
             <input required type="email" class="ui input anon-email" value="{{anonymousData.email}}" placeholder="Your email" />
           </div>
         </div>
+
+        {{#if sweetCaptchaEnabled}}
+          <div class="field">
+            <iframe style="width: 100%; min-height: 180px" frameborder="0" class="sweet-captcha"></iframe>
+          </div>
+        {{/if}}
       {{/if}}
       <button type="submit" class="ui blue labeled submit icon button">
         <i class="icon edit"></i> {{ take key=addButtonKey default=defaultAddButtonText }}

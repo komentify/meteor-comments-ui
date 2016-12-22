@@ -19,6 +19,10 @@
           <div class="alert alert-warning" role="alert">{{youNeedToLogin}}</div>
         {{/if}}
 
+        {{#if sessionGet 'commentError'}}
+          <div class="alert alert-error">{{commentErrorMessage}}</div>
+        {{/if}}
+
         {{> textarea}}
 
         {{> commentsList}}
@@ -38,6 +42,10 @@
             <div class="ui warning message">{{youNeedToLogin}}</div>
           {{/if}}
 
+          {{#if sessionGet 'commentError'}}
+          <div class="ui error message">{{commentErrorMessage}}</div>
+          {{/if}}
+
           {{> textarea }}
 
           {{> commentsList}}
@@ -55,6 +63,10 @@
 
       {{#if sessionGet 'loginAction'}}
         <div class="bar bar-header bar-assertive">{{youNeedToLogin}}</div>
+      {{/if}}
+
+      {{#if sessionGet 'commentError'}}
+        <div class="bar bar-header bar-assertive">{{commentErrorMessage}}</div>
       {{/if}}
 
       {{> textarea}}
