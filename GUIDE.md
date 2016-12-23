@@ -89,6 +89,7 @@ The anonymous user gets a random user id and salt assigned when doing a user rel
 We added integation for captchas with [sweetcaptcha](https://www.sweetcaptcha.com/). Add following configuration for it to work.
 
 ```js
+// On the server
 Comments.config({
   allowAnonymous: () => true,
   sweetCaptcha: () => ({
@@ -97,8 +98,17 @@ Comments.config({
     appSecret: '...',
   }),
 });
+
+// On the client
+Comments.config({
+  allowAnonymous: () => true,
+  sweetCaptcha: () => ({
+    use: true,
+  }),
+});
 ```
 
+Only configure this on the server and provide a fake object on the client!
 Note that only anon users have to enter a captcha, because other users can be backtracked.
 
 ### Rating comments
