@@ -91,11 +91,11 @@ We added integation for captchas with [sweetcaptcha](https://www.sweetcaptcha.co
 ```js
 Comments.config({
   allowAnonymous: () => true,
-  sweetCaptcha: {
+  sweetCaptcha: () => ({
     appId: '...',
     appKey: '...',
     appSecret: '...',
-  },
+  }),
 });
 ```
 
