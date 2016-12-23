@@ -30,7 +30,6 @@ Package.onUse(function(api) {
     'random',
     'markdown',
     'reactive-dict',
-    'reactive-var',
     'session'
   ]);
 
