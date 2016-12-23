@@ -108,7 +108,7 @@ Comments.config({
 });
 ```
 
-Only configure this on the server and provide a fake object on the client!
+Be sure that you don't expose the appId key and secret on the client!
 Note that only anon users have to enter a captcha, because other users can be backtracked.
 
 ### Rating comments
