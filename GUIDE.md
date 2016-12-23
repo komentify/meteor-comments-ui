@@ -84,6 +84,33 @@ Comments.config({
 
 The anonymous user gets a random user id and salt assigned when doing a user related action (liking, commentig and so on). This salt is used as an authentication for these actions and is a random string based on the configured `anonymousSalt` and user data.
 
+### Captcha
+
+We added integation for captchas with [sweetcaptcha](https://www.sweetcaptcha.com/). Add following configuration for it to work.
+
+```js
+// On the server
+Comments.config({
+  allowAnonymous: () => true,
+  sweetCaptcha: () => ({
+    appId: '...',
+    appKey: '...',
+    appSecret: '...',
+  }),
+});
+
+// On the client
+Comments.config({
+  allowAnonymous: () => true,
+  sweetCaptcha: () => ({
+    use: true,
+  }),
+});
+```
+
+Be sure that you don't expose the appId key and secret on the client!
+Note that only anon users have to enter a captcha, because other users can be backtracked.
+
 ### Rating comments
 
 It is possible to change between rating types, by default it's likes:

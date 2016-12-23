@@ -1,12 +1,13 @@
 Package.describe({
   name: 'arkham:comments-ui',
   summary: 'Simple templates for disqus-like comment functionality',
-  version: '1.2.4',
+  version: '1.3.0',
   git: 'https://github.com/komentify/meteor-comments-ui.git'
 });
 
 Npm.depends({
-  linkifyjs: '2.0.2'
+  linkifyjs: '2.0.2',
+  sweetcaptcha: '0.0.2-1',
 });
 
 Package.onUse(function(api) {
@@ -44,7 +45,7 @@ Package.onUse(function(api) {
     'lib/collections/anonymous-user.js',
     'lib/collections/comments.js',
     'lib/collections/methods/anonymous-user.js',
-    'lib/collections/methods/comments.js'
+    'lib/collections/methods/comments.js',
   ]);
 
   api.addFiles([
@@ -59,7 +60,7 @@ Package.onUse(function(api) {
     'lib/components/commentsTextarea/commentsTextarea.html',
     'lib/components/commentsSubheader/commentsSubheader.html',
     'lib/components/commentsList/commentsList.html',
-    'lib/api.js'
+    'lib/api.js',
   ]);
 
   api.addFiles([
@@ -68,12 +69,13 @@ Package.onUse(function(api) {
     'lib/components/commentsSingleComment/commentsSingleComment.js',
     'lib/components/commentsTextarea/commentsTextarea.js',
     'lib/components/commentsSubheader/commentsSubheader.js',
-    'lib/components/commentsList/commentsList.js'
+    'lib/components/commentsList/commentsList.js',
   ], 'client');
 
   api.addFiles([
     'lib/server/publish.js',
-    'lib/services/hashing.js'
+    'lib/services/hashing.js',
+    'lib/server/captcha.js',
   ], 'server');
 
   api.export('Comments');
