@@ -1,7 +1,7 @@
 Package.describe({
   name: 'arkham:comments-ui',
   summary: 'Simple templates for disqus-like comment functionality',
-  version: '1.3.0',
+  version: '1.3.1',
   git: 'https://github.com/komentify/meteor-comments-ui.git'
 });
 
@@ -30,7 +30,6 @@ Package.onUse(function(api) {
     'random',
     'markdown',
     'reactive-dict',
-    'session'
   ]);
 
   // Atmosphere Package Dependencies
