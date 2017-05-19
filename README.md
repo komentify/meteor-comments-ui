@@ -3,8 +3,8 @@
 This package lets you add a comment box in a matter of seconds. Comments UI provides the base for [komentify](http://www.komentify.io), a service that allows you to add comment components to any app without the need for a custom backend.
 
 * Based on the Meteor accounts system
-* Simple [Javascript API](https://github.com/ARKHAM-Enterprises/meteor-comments-ui/blob/master/GUIDE.md#javascript-api) to manipulate and retrieve comment data
-* Many [configurable values](https://github.com/ARKHAM-Enterprises/meteor-comments-ui/blob/master/GUIDE.md#configurable-values) and easily customizable
+* Simple [Javascript API](./GUIDE.md#javascript-api) to manipulate and retrieve comment data
+* Many [configurable values](./GUIDE.md#configurable-values) and easily customizable
 
 ```html
 <div class="comment-section">
@@ -22,4 +22,4 @@ meteor add arkham:comments-ui
 
 ## Further reading
 
-Have a look at the [GUIDE.md](https://github.com/ARKHAM-Enterprises/meteor-comments-ui/blob/master/GUIDE.md) for a detailed explanation of the Javascript API, configuration and more.
+Have a look at the [GUIDE.md](./GUIDE.md) for a detailed explanation of the Javascript API, configuration and more.
