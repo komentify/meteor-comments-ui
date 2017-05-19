@@ -227,6 +227,7 @@ The configurable values are:
 * __placeholder-textarea__ Placeholder for commenting textarea
 * __save__, __edit__  and __remove__ Action texts
 * __load-more__ Load more button text
+* __comment-is-pending__ Comment is pending for approval text
 
 ### Comment actions
 
