@@ -86,16 +86,14 @@ You can then add logic in your app to list the pending comments and approve them
  
 ```js
 // Server
-Meteor.publish('pendingCommentsForAdmin', function () {
-  // do security checks
-  return Comments.getAllForStatus('pending')
-})
-
 Meteor.methods({
+  'comment-admin/retrieve-pending'() {
+    // do security checks
+    return Comments.getAllForStatus('pending')
+  },
   'comment-admin/approve'(commentOrReplyId) {
     check(commentOrReplyId, String)
     // do security checks
-
     Comments.approve(commentOrReplyId)
   },
 })
