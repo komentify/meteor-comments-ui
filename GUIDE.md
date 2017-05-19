@@ -86,30 +86,7 @@ The anonymous user gets a random user id and salt assigned when doing a user rel
 
 ### Captcha
 
-We added integation for captchas with [sweetcaptcha](https://www.sweetcaptcha.com/). Add following configuration for it to work.
-
-```js
-// On the server
-Comments.config({
-  allowAnonymous: () => true,
-  sweetCaptcha: () => ({
-    appId: '...',
-    appKey: '...',
-    appSecret: '...',
-  }),
-});
-
-// On the client
-Comments.config({
-  allowAnonymous: () => true,
-  sweetCaptcha: () => ({
-    use: true,
-  }),
-});
-```
-
-Be sure that you don't expose the appId key and secret on the client!
-Note that only anon users have to enter a captcha, because other users can be backtracked.
+We have removed the integration with captcha's because it distributes [adware](https://blog.sucuri.net/2015/06/sweetcaptcha-service-used-to-distribute-adware.html).
 
 ### Rating comments
 

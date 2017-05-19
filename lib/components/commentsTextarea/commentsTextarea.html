@@ -18,12 +18,6 @@
             <input required type="email" class="ui input anon-email" value="{{anonymousData.email}}" placeholder="Your email" />
           </div>
         </div>
-
-        {{#if sweetCaptchaEnabled}}
-          <div class="field">
-            <iframe style="width: 100%; min-height: 180px" frameborder="0" class="sweet-captcha"></iframe>
-          </div>
-        {{/if}}
       {{/if}}
       <button type="submit" class="ui blue labeled submit icon button">
         <i class="icon edit"></i> {{ take key=addButtonKey default=defaultAddButtonText }}
@@ -48,14 +42,6 @@
               <input required type="email" class="form-control anon-email" value="{{anonymousData.email}}" placeholder="Your email" />
             </div>
           </div>
-
-          {{#if sweetCaptchaEnabled}}
-            <div class="row">
-              <div class="col-md-12">
-                  <iframe style="width: 100%; min-height: 180px" frameborder="0" class="sweet-captcha"></iframe>
-              </div>
-            </div>
-          {{/if}}
         </div>
       {{/if}}
       <button type="submit" class="btn btn-primary">{{ take key=addButtonKey default=defaultAddButtonText }}</button>
@@ -77,12 +63,6 @@
           <label class="item item-input">
             <input required type="email" class="form-control anon-email" value="{{anonymousData.email}}" placeholder="Your email" />
           </label>
-
-          {{#if sweetCaptchaEnabled}}
-            <div class="item item-input">
-              <iframe style="width: 100%; min-height: 180px" frameborder="0" class="sweet-captcha"></iframe>
-            </div>
-          {{/if}}
         {{/if}}
       </div>
       <div class="padding">
