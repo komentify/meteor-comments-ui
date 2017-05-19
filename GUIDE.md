@@ -70,6 +70,39 @@ Be sure to add them as **strings** instead of template instances.
 
 Have a look at the [default template](https://github.com/ARKHAM-Enterprises/meteor-comments-ui/blob/master/lib/components/commentsBox/commentsBox.html) to see what data you have available. There are predefined classes that have an action suffix on their classes, that define when to act on [certain events](https://github.com/ARKHAM-Enterprises/meteor-comments-ui/blob/master/lib/components/commentsBox/commentsBox.js#L143) (for example create-action, edit-action and so on).
 
+### Comment management
+
+There are two comment statuses `pending` and `approved`. By default all coments are `approved`, but you can change the default 
+comment status by providing a `defaultCommentStatus` configuration.
+
+```js
+// Server and Client
+Comments.config({
+  defaultCommentStatus: 'pending',
+})
+```
+
+You can then add logic in your app to list the pending comments and approve them with the Javascript API.
+ 
+```js
+// Server
+Meteor.publish('pendingCommentsForAdmin', function () {
+  // do security checks
+  return Comments.getAllForStatus('pending')
+})
+
+Meteor.methods({
+  'comment-admin/approve'(commentOrReplyId) {
+    check(commentOrReplyId, String)
+    // do security checks
+
+    Comments.approve(commentOrReplyId)
+  },
+})
+```
+
+These two methods should be sufficient to build a simple Admin UI for pending comments.
+
 ### Anonymous users
 
 You can allow anonymous users to comment, configurable like following.
