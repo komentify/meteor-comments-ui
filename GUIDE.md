@@ -119,7 +119,8 @@ The anonymous user gets a random user id and salt assigned when doing a user rel
 
 ### Captcha
 
-We have removed the integration with captcha's because it distributes [adware](https://blog.sucuri.net/2015/06/sweetcaptcha-service-used-to-distribute-adware.html).
+We have removed the integration with captcha's because it distributed [adware](https://blog.sucuri.net/2015/06/sweetcaptcha-service-used-to-distribute-adware.html).
+We're investigating for a reasonable alternative.
 
 ### Rating comments
 
