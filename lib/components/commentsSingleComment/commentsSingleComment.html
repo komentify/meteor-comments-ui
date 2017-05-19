@@ -2,6 +2,7 @@
   {{#if customSingleCommentTemplate}}
     {{> customSingleCommentTemplate}}
   {{else}}
+
   {{#if templateIs 'semantic-ui' }}
     <div data-id="{{_id}}" class="comment {{#if isOwnComment}}own-comment{{/if}}">
       <a class="avatar">
@@ -12,7 +13,13 @@
         <div class="metadata">
           <span class="date">{{createdAgo}}</span>
         </div>
-        <div class="text comment-content" data-id="{{commentId}}">
+        <div class="text comment-content {{#if status}}comment-status-{{status}}{{/if}}" data-id="{{commentId}}">
+          {{#if isPendingStatus}}
+          <div class="ui info message">
+            <p><i>{{ take key='comment-is-pending' default='This comment is pending for approval.'}}</i></p>
+          </div>
+          {{/if}}
+
           {{#if uiConfigGet 'markdown'}}
             <div class="text-span">{{#markdown}}{{content}}{{/markdown}}</div>
           {{else}}
@@ -88,6 +95,12 @@
         <h4 class="media-heading">{{user.displayName}} <small>{{createdAgo}}</small></h4>
         <div class="content">
           <p class="comment-content" data-id="{{commentId}}">
+            {{#if isPendingStatus}}
+            <div class="alert alert-info">
+              <p><i>{{ take key='comment-is-pending' default='This comment is pending for approval.'}}</i></p>
+            </div>
+            {{/if}}
+
             {{#if uiConfigGet 'markdown'}}
               <div class="text-span">{{#markdown}}{{content}}{{/markdown}}</div>
             {{else}}
@@ -165,6 +178,11 @@
 
       <div class="item item-body comment {{#if isOwnComment}}own-comment{{/if}}">
         <p class="comment-content" data-id="{{commentId}}">
+          {{#if isPendingStatus}}
+          <div class="message-info">
+            <i>{{ take key='comment-is-pending' default='This comment is pending for approval.'}}</i>
+          </div>
+          {{/if}}
           {{#if uiConfigGet 'markdown'}}
             <div class="text-span">{{#markdown}}{{content}}{{/markdown}}</div>
           {{else}}

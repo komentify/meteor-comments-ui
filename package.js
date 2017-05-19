@@ -73,6 +73,7 @@ Package.onUse(function(api) {
   api.addFiles([
     'lib/server/publish.js',
     'lib/services/hashing.js',
+    'lib/comment-status-api.js',
   ], 'server');
 
   api.export('Comments');
