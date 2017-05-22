@@ -74,6 +74,7 @@ Package.onUse(function(api) {
     'lib/server/publish.js',
     'lib/services/hashing.js',
     'lib/comment-status-api.js',
+    'lib/server/api.js',
   ], 'server');
 
   api.export('Comments');

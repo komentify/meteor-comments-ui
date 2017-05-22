@@ -4,7 +4,7 @@
   {{else}}
 
   {{#if templateIs 'semantic-ui' }}
-    <div data-id="{{_id}}" class="comment {{#if isOwnComment}}own-comment{{/if}}">
+    <div data-id="{{_id}}" class="comment {{#if isOwnComment}}own-comment{{/if}} {{#if status}}comment-status-{{status}}{{/if}}">
       <a class="avatar">
         <img alt="Avatar of {{user.displayName}}" src="{{avatarUrl}}" />
       </a>
@@ -87,7 +87,7 @@
   {{/if}}
 
   {{#if templateIs 'bootstrap' }}
-    <div class="media">
+    <div class="media {{#if status}}comment-status-{{status}}{{/if}}">
       <div class="media-left">
         <img alt="Avatar of {{user.displayName}}" class="img-thumbnail img-avatar" src="{{avatarUrl}}" />
       </div>
@@ -169,7 +169,7 @@
   {{/if}}
 
   {{#if templateIs 'ionic' }}
-    <div class="list card">
+    <div class="list card {{#if status}}comment-status-{{status}}{{/if}}">
       <div class="item item-avatar">
         <img alt="Avatar of {{user.displayName}}" src='{{avatarUrl}}' />
         <p><small>{{createdAgo}}</small></p>
