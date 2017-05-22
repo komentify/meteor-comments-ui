@@ -72,17 +72,17 @@ Have a look at the [default template](https://github.com/ARKHAM-Enterprises/mete
 
 ### Comment management
 
-There are two comment statuses `pending` and `approved`. By default all coments are `approved`, but you can change the default 
+There are two comment statuses `pending` and `approved`. By default all comments are `approved`, but you can change the default 
 comment status by providing a `defaultCommentStatus` configuration.
 
 ```js
-// Server and Client
+// Server
 Comments.config({
   defaultCommentStatus: 'pending',
 })
 ```
 
-You can then add logic in your app to list the pending comments and approve them with the Javascript API.
+You can then add logic in your admin interface to list the pending comments and approve them with the Javascript API.
  
 ```js
 // Server
@@ -98,7 +98,7 @@ Meteor.methods({
   },
 })
 ``` 
-You can also configure if a user can see the pending comments (for example if admin).
+You can also configure if a user can see the pending comments in the widget (for example if admin).
 
 ```js
 const isAdmin = () => { /*...*/ }
