@@ -97,9 +97,19 @@ Meteor.methods({
     Comments.approve(commentOrReplyId)
   },
 })
+``` 
+You can also configure if a user can see the pending comments (for example if admin).
+
+```js
+const isAdmin = () => { /*...*/ }
+
+// Client and Server
+Comments.config({
+  canSeePendingComments: (referenceId, userId) => isAdmin(userId),
+})
 ```
 
-These two methods should be sufficient to build a simple Admin UI for pending comments.
+These methods should be sufficient to build a simple Admin UI for pending comments.
 
 ### Anonymous users
 
