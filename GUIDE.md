@@ -70,6 +70,47 @@ Be sure to add them as **strings** instead of template instances.
 
 Have a look at the [default template](https://github.com/ARKHAM-Enterprises/meteor-comments-ui/blob/master/lib/components/commentsBox/commentsBox.html) to see what data you have available. There are predefined classes that have an action suffix on their classes, that define when to act on [certain events](https://github.com/ARKHAM-Enterprises/meteor-comments-ui/blob/master/lib/components/commentsBox/commentsBox.js#L143) (for example create-action, edit-action and so on).
 
+### Comment management
+
+There are two comment statuses `pending` and `approved`. By default all comments are `approved`, but you can change the default 
+comment status by providing a `defaultCommentStatus` configuration.
+
+```js
+// Server
+Comments.config({
+  defaultCommentStatus: 'pending',
+})
+```
+
+You can then add logic in your admin interface to list the pending comments and approve them with the Javascript API.
+ 
+```js
+// Server
+Meteor.methods({
+  'comment-admin/retrieve-pending'() {
+    // do security checks
+    return Comments.getAllForStatus('pending')
+  },
+  'comment-admin/approve'(commentOrReplyId) {
+    check(commentOrReplyId, String)
+    // do security checks
+    Comments.approve(commentOrReplyId)
+  },
+})
+``` 
+You can also configure if a user can see the pending comments in the widget (for example if admin).
+
+```js
+const isAdmin = () => { /*...*/ }
+
+// Client and Server
+Comments.config({
+  canSeePendingComments: (referenceId, userId) => isAdmin(userId),
+})
+```
+
+These methods should be sufficient to build a simple Admin UI for pending comments.
+
 ### Anonymous users
 
 You can allow anonymous users to comment, configurable like following.
@@ -86,7 +127,8 @@ The anonymous user gets a random user id and salt assigned when doing a user rel
 
 ### Captcha
 
-We have removed the integration with captcha's because it distributes [adware](https://blog.sucuri.net/2015/06/sweetcaptcha-service-used-to-distribute-adware.html).
+We have removed the integration with captcha's because it distributed [adware](https://blog.sucuri.net/2015/06/sweetcaptcha-service-used-to-distribute-adware.html).
+We're investigating for a reasonable alternative.
 
 ### Rating comments
 
@@ -193,6 +235,7 @@ The configurable values are:
 * __placeholder-textarea__ Placeholder for commenting textarea
 * __save__, __edit__  and __remove__ Action texts
 * __load-more__ Load more button text
+* __comment-is-pending__ Comment is pending for approval text
 
 ### Comment actions
 
