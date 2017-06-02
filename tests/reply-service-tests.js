@@ -8,7 +8,7 @@ const replies = [
   {
     replyId: 'firstReplyId',
     replies: [
-      { replyId: 'nestedReplyId' },
+      { replyId: 'nestedReplyId', stars: 5 },
       {
         replyId: 'nestedReplyId2',
         replies: [
@@ -57,6 +57,26 @@ Tinytest.add('Comments - Reply Service - removeReplyByReplyId', function (test) 
   test.equal(removeReplyByReplyId(replies, 'thirdNestedReplyId3')[2].replies.length, 1)
   test.equal(removeReplyByReplyId(replies, 'thirdNestedReplyId3')[0].replies[1].replies[0].replies.length, 1)
   test.equal(removeReplyByReplyId(replies, 'mostNestedReplyEver')[0].replies[1].replies[0].replies.length, 0)
+
+  test.equal(
+    removeReplyByReplyId(replies, 'firstReplyId', reply => false)[0].replyId,
+    'firstReplyId'
+  )
+
+  test.equal(
+    removeReplyByReplyId(replies, 'firstReplyId', reply => reply.replyId === 'firstReplyId')[0].replyId,
+    'secondReplyId'
+  )
+
+  test.equal(
+    removeReplyByReplyId(replies, 'nestedReplyId', reply => reply.stars === 5)[0].replies[0].replyId,
+    'nestedReplyId2'
+  )
+
+  test.equal(
+    removeReplyByReplyId(replies, 'nestedReplyId', reply => reply.stars === 4)[0].replies[0].replyId,
+    'nestedReplyId'
+  )
 })
 
 Tinytest.add('Comments - Reply Service - adjustReplyByReplyId', function (test) {
