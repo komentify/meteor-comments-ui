@@ -81,9 +81,9 @@ Package.onUse(function(api) {
 });
 
 Package.onTest(function(api) {
-  api.use(['tinytest', 'accounts-password', 'audit-argument-checks', 'check']);
+  api.use(['tinytest', 'accounts-password', 'ecmascript', 'audit-argument-checks', 'check']);
   api.use('arkham:comments-ui');
 
-  api.addFiles('tests/api-tests.js');
+  api.addFiles(['tests/api-tests.js', 'tests/reply-service-tests.js']);
   api.addFiles('tests/ui-tests.js', 'client');
 });
