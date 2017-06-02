@@ -1,4 +1,5 @@
 # Meteor Comments UI
+[![Build Status](http://img.shields.io/travis/komentify/meteor-comments-ui.svg)](https://travis-ci.org/komentify/meteor-comments-ui)
 
 This package lets you add a comment box in a matter of seconds. Comments UI provides the base for [komentify](http://www.komentify.io), a service that allows you to add comment components to any app without the need for a custom backend.
 
