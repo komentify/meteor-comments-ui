@@ -28,20 +28,20 @@ const replies = [
 ]
 
 Tinytest.add('Comments - Reply Service - getMongoReplyFieldDescriptor', function (test) {
-  test.equal(getMongoReplyFieldDescriptor(replies, 'firstReplyId'), 'replies.0.replies')
-  test.equal(getMongoReplyFieldDescriptor(replies, 'thirdReplyId'), 'replies.2.replies')
-  test.equal(getMongoReplyFieldDescriptor(replies, 'secondReplyId'), 'replies.1.replies')
+  test.equal(getMongoReplyFieldDescriptor(replies, 'firstReplyId'), 'replies.0')
+  test.equal(getMongoReplyFieldDescriptor(replies, 'thirdReplyId'), 'replies.2')
+  test.equal(getMongoReplyFieldDescriptor(replies, 'secondReplyId'), 'replies.1')
   test.equal(
     getMongoReplyFieldDescriptor(replies, 'thirdNestedReplyId3'),
-    'replies.2.replies.0.replies',
+    'replies.2.replies.0',
   )
   test.equal(
     getMongoReplyFieldDescriptor(replies, 'moreNestedReplyId2'),
-    'replies.0.replies.1.replies.0.replies',
+    'replies.0.replies.1.replies.0',
   )
   test.equal(
     getMongoReplyFieldDescriptor(replies, 'mostNestedReplyEver'),
-    'replies.0.replies.1.replies.0.replies.0.replies',
+    'replies.0.replies.1.replies.0.replies.0',
   )
   test.equal(getMongoReplyFieldDescriptor(replies, 'wootWoot'), '')
 })
