@@ -70,24 +70,21 @@ Tinytest.add('Comments - config', function (test) {
 
 if (Meteor.isClient) {
   Tinytest.addAsync('Comments - add', function (test, done) {
-    const testFunc = async function () {
-      Meteor.call('removeGeneratedDocs', Meteor.userId())
+    Meteor.call('removeGeneratedDocs', Meteor.userId())
 
-      await Comments.add('fakeDoc1', 'I liked this')
-      await Comments.add('fakeDoc1', 'I did not like it')
-      await Comments.add('fakeDoc1', '')
+    Comments.add('fakeDoc1', 'I liked this')
+    Comments.add('fakeDoc1', 'I did not like it')
+    Comments.add('fakeDoc1', '')
 
-      var comments = Comments.get('fakeDoc1').fetch()
+    var comments = Comments.get('fakeDoc1').fetch()
 
-      test.equal(comments[0].content, 'I did not like it')
-      test.equal(comments[0].userId, Meteor.userId())
-      test.equal(comments[0].referenceId, 'fakeDoc1')
-      test.equal(comments[1].content, 'I liked this')
-      test.equal(comments[1].userId, Meteor.userId())
-      test.equal(comments[1].referenceId, 'fakeDoc1')
-    }
-
-    testFunc().then(done)
+    test.equal(comments[0].content, 'I did not like it')
+    test.equal(comments[0].userId, Meteor.userId())
+    test.equal(comments[0].referenceId, 'fakeDoc1')
+    test.equal(comments[1].content, 'I liked this')
+    test.equal(comments[1].userId, Meteor.userId())
+    test.equal(comments[1].referenceId, 'fakeDoc1')
+    done()
   })
 
   Tinytest.add('Comments - get', function (test) {
@@ -223,21 +220,29 @@ if (Meteor.isClient) {
   Tinytest.addAsync('Comments - Reply - add', function (test, done) {
     Meteor.call('removeGeneratedDocs', Meteor.userId())
 
-    const testFunc = async () => {
-      const { _id: docId } = await Comments.add('fakeDoc1', 'I liked this')
-      const { replyId } = await Comments.reply(docId, null, 'Stfu please!!!')
-      await Comments.reply(docId, replyId, 'nested reply')
-      const comment = Comments.getOne(docId)
+    Comments.add('fakeDoc1', 'I liked this')
+      .then(function ({ _id: docId }) {
+        Comments
+          .reply(docId, null, 'Stfu WOW')
+          .then(function () {
+            return Comments.reply(docId, null, 'Stfu please!!!')
+          })
+          .then(function ({ replyId }) {
+            return Comments.reply(docId, replyId, 'nested reply')
+          })
+          .then(function () {
+            const comment = Comments.getOne(docId)
 
-      test.equal(comment.content, 'I liked this')
-      test.equal(comment.userId, Meteor.userId())
-      test.equal(comment.replies[0].content, 'Stfu please!!!')
-      test.equal(comment.replies[0].userId, Meteor.userId())
-      test.equal(comment.replies[0].replies[0].content, 'nested reply')
-      test.equal(comment.replies[0].replies[0].userId, Meteor.userId())
-    }
-
-    testFunc().then(done)
+            console.log(comment)
+            test.equal(comment.content, 'I liked this')
+            test.equal(comment.userId, Meteor.userId())
+            test.equal(comment.replies[0].content, 'Stfu please!!!')
+            test.equal(comment.replies[0].userId, Meteor.userId())
+            test.equal(comment.replies[0].replies[0].content, 'nested reply')
+            test.equal(comment.replies[0].replies[0].userId, Meteor.userId())
+            done()
+          })
+      })
   })
 
   Tinytest.add('Comments - changeSchema', function (test) {
