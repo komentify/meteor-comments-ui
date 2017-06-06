@@ -198,6 +198,28 @@ if (Meteor.isClient) {
     test.equal(comments[0].likes.length, 1)
   })
 
+  Tinytest.add('Comments - dislike', function (test) {
+    Meteor.call('removeGeneratedDocs', Meteor.userId())
+
+    Comments.add('likesDoc', 'Please give me likes')
+
+    var comments = Comments.get('likesDoc').fetch()
+    test.equal(comments[0].content, 'Please give me likes')
+    test.equal(comments[0].dislikes.length, 0)
+
+    Comments.dislike(comments[0]._id)
+    comments = Comments.get('likesDoc').fetch()
+    test.equal(comments[0].dislikes.length, 1)
+
+    Comments.dislike(comments[0]._id)
+    comments = Comments.get('likesDoc').fetch()
+    test.equal(comments[0].dislikes.length, 0)
+
+    Comments.dislike(comments[0]._id)
+    comments = Comments.get('likesDoc').fetch()
+    test.equal(comments[0].dislikes.length, 1)
+  })
+
   Tinytest.addAsync('Comments - Reply - add', function (test, done) {
     Meteor.call('removeGeneratedDocs', Meteor.userId())
 
