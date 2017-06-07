@@ -217,7 +217,7 @@ if (Meteor.isClient) {
     test.equal(comments[0].dislikes.length, 1)
   })
 
-  Tinytest.addAsync('Comments - Reply - add', function (test, done) {
+  Tinytest.addAsync('Comments - Reply', function (test, done) {
     Meteor.call('removeGeneratedDocs', Meteor.userId())
 
     Comments.add('fakeDoc1', 'I liked this')
@@ -229,13 +229,16 @@ if (Meteor.isClient) {
           })
           .then(function ({ replyId }) {
             return Comments.reply(docId, replyId, 'nested reply')
+              .then(() => Comments.likeReply(docId, replyId))
+              .then(() => Comments.dislikeReply(docId, replyId))
           })
           .then(function () {
             const comment = Comments.getOne(docId)
 
-            console.log(comment)
             test.equal(comment.content, 'I liked this')
             test.equal(comment.userId, Meteor.userId())
+            test.equal(comment.replies[0].likes.length, 1)
+            test.equal(comment.replies[0].dislikes.length, 1)
             test.equal(comment.replies[0].content, 'Stfu please!!!')
             test.equal(comment.replies[0].userId, Meteor.userId())
             test.equal(comment.replies[0].replies[0].content, 'nested reply')
