@@ -8,7 +8,7 @@ There are default templates for __Bootstrap 3__, __Ionic__ and __Semantic UI__ w
 // On the Client
 Comments.ui.config({
    template: 'bootstrap' // or ionic, semantic-ui
-});
+})
 ```
 
 ```semantic-ui``` is the default, because of the semantic markup that is written with it.
@@ -21,13 +21,16 @@ There is a simple Javascript API to manipulate and get data about comments.
 // On Client or Server
 
 // Get comments for an id
-Comments.get('someId');
+Comments.get('someId')
 // Get count of comments for an id
-Comments.getCount('someId', (err, count) => console.log(count));
+Comments.getCount('someId', (err, count) => console.log(count))
 // Get one comment by it's document _id
-Comments.getOne('commentsDocumentId');
+Comments.getOne('commentsDocumentId')
 // Get all comments (on client only get's the ones subscribed to)
-Comments.getAll();
+Comments.getAll()
+// Add comment
+Comments.add('commentsDocumentId', 'Cool document you got there!')
+  .then(doc => console.log('added the comment'))
 ```
 
 See the [source code](https://github.com/ARKHAM-Enterprises/meteor-comments-ui/blob/master/lib/api.js) for the methods to manipulate comment data.
@@ -120,7 +123,7 @@ You can allow anonymous users to comment, configurable like following.
 Comments.config({
   allowAnonymous: () => true,
   anonymousSalt: 'myRandomSalt'
-});
+})
 ```
 
 The anonymous user gets a random user id and salt assigned when doing a user related action (liking, commentig and so on). This salt is used as an authentication for these actions and is a random string based on the configured `anonymousSalt` and user data.
@@ -142,7 +145,7 @@ It is possible to change between rating types, by default it's likes:
 // On Client and Server
 Comments.config({
   rating: 'stars' // or null if no rating method should be used
-});
+})
 ```
 
 ### Published data
@@ -156,9 +159,9 @@ Comments.config({
     profile: 1
   },
   generateUsername: function (user) {
-     return user.profile.username;
+     return user.profile.username
   }
-});
+})
 ```
 
 If you want to have custom logic that defines the username you can define a `generateUsername` function that returns the username as you want it displayed in the comments box.
@@ -171,10 +174,10 @@ You can set custom avatars per user by using the `generateAvatar` function.
 // On Client
 Comments.ui.config({
   generateAvatar: function (user, isAnonymous) {
-    return user.profile.username;
+    return user.profile.username
   },
   defaultAvatar: '...' // fallback
-});
+})
 ```
 
 ### Media
@@ -186,7 +189,7 @@ const myAnalyzer = {
   name: 'twitter',
   getMediaFromContent(content) {}, // return a string
   getMarkup(mediaContent) {}, // return a string
-};
+}
 
 // Client and Server
 Comments.config({
@@ -195,7 +198,7 @@ Comments.config({
     Comments.analyzers.youtube,
     myAnalyzer
   ]
-});
+})
 ```
 
 Have a look at the [image analyzer code](https://github.com/ARKHAM-Enterprises/meteor-comments-ui/blob/master/lib/services/media-analyzers/image.js) to see how an implementation might look like.
@@ -206,8 +209,8 @@ Changing the [Simple Schema](https://github.com/aldeed/meteor-simple-schema) def
 
 ```javascript
 Comments.changeSchema(function (currentSchema) {
-  currentSchema.metaInfo = { type: Object, optional: true };
-});
+  currentSchema.metaInfo = { type: Object, optional: true }
+})
 ```
 
 ### Text Strings
@@ -225,7 +228,7 @@ Comments.ui.setContent({
   'add-button-reply': 'Antwort hinzufügen',
   'add-button': 'Kommentar hinzufügen',
   'load-more': 'Mehr Kommentare laden'
-});
+})
 ```
 
 The configurable values are:
@@ -252,7 +255,7 @@ Comments.ui.config({
       }
     }
   ],
-});
+})
 ```
 
 The css class can be used to trigger an onclick action. The `key` property referes to the text string that can be used
@@ -269,7 +272,7 @@ Comments.config({
   onEvent: (name, action, payload) => {
     // e.g send a mail
   }
-});
+})
 ```
 
 ## Configurable values
@@ -284,7 +287,7 @@ Comments.ui.config({
   defaultAvatar:'http://s3.amazonaws.com/37assets/svn/765-default-avatar.png',
   markdown: false,
   commentActions: [],
-});
+})
 ```
 
 There is also a general comments config that changes functionality on more than just the UI.
@@ -298,5 +301,5 @@ Comments.config({
   anonymousSalt: 'changeMe',
   mediaAnalyzers: [Comments.analyzers.image],
   publishUserFields: { profile: 1, emails: 1, username: 1 }
-});
+})
 ```
