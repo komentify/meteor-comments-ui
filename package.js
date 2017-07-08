@@ -7,6 +7,7 @@ Package.describe({
 
 Npm.depends({
   linkifyjs: '2.0.2',
+  'simpl-schema': '0.3.1',
 });
 
 Package.onUse(function(api) {
