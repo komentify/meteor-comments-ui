@@ -12,7 +12,7 @@ Npm.depends({
 
 Package.onUse(function(api) {
   // Meteor Version
-  api.versionsFrom('METEOR@1.4.1.2');
+  api.versionsFrom('METEOR@1.4.4');
 
   // Meteor Core Dependencies
   api.use(['accounts-password@1.0.1'], { weak: true });
@@ -33,8 +33,9 @@ Package.onUse(function(api) {
   ]);
 
   // Atmosphere Package Dependencies
-  api.use([
-    'aldeed:collection2-core@2.0.1', 'aldeed:schema-deny@2.0.0', 'dburles:collection-helpers@1.0.3',
+    api.use([
+	'aldeed:schema-deny@2.0.0',
+    'aldeed:collection2-core@2.0.1', 'dburles:collection-helpers@1.0.3',
     'momentjs:moment@2.10.6', 'reywood:publish-composite@1.4.2',
     'aldeed:template-extension@4.0.0', 'barbatus:stars-rating@1.0.7'
   ]);
