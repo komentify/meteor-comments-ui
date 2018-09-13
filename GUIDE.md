@@ -224,10 +224,19 @@ Comments.ui.setContent({
   save: 'Speichern',
   reply: 'Antworten',
   edit: 'Editieren',
+  remove:'Elimiar',
   'placeholder-textarea': 'Teile uns deine Meinung mit',
   'add-button-reply': 'Antwort hinzufügen',
   'add-button': 'Kommentar hinzufügen',
-  'load-more': 'Mehr Kommentare laden'
+  'load-more': 'Mehr Kommentare laden',
+  'comment-is-pending':'Pendiente de aprovacion',
+  'you-need-to-login':'Necesitas iniciar sesion para ',
+  'add comments':'agregar comentarios',
+  'add replies':'agregar respuestas',
+  'like comments':'darle me gusta a comentarios',
+  'dislike comments':'darle no me gusta a comentarios',
+  'rate comments':'calificar',
+  'remove comments':'eliminar comentarios'
 })
 ```
 
