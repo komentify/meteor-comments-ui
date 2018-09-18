@@ -93,7 +93,7 @@
       </div>
       <div class="media-body comment {{#if isOwnComment}}own-comment{{/if}}">
         <h4 class="media-heading">{{user.displayName}} <small>{{createdAgo}}</small></h4>
-        <div class="content">
+        <div class="the-content"><!-- some issues with a class in my project -->
           <p class="comment-content" data-id="{{commentId}}">
             {{#if isPendingStatus}}
             <div class="alert alert-info">
