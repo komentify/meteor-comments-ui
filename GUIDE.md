@@ -249,6 +249,9 @@ The configurable values are:
 * __load-more__ Load more button text
 * __comment-is-pending__ Comment is pending for approval text
 
+Also you can change the language of the legend ('x minutes ago') to your own languaje with the packaje [rzymek:moment-locales](https://atmospherejs.com/rzymek/moment-locales)
+
+
 ### Comment actions
 
 You can define custom actions that can be used on a comment / reply. An example could be sharing.
